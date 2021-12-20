@@ -26,4 +26,12 @@ public class ActivityType implements Serializable {
     public void setRegistrationRequired(boolean flag) {
         registration = flag;
     }
+
+    @Override
+    public String toString() {
+        return "ActivityType{" +
+                "name='" + name + '\'' +
+                ", registration=" + registration +
+                '}';
+    }
 }

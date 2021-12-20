@@ -12,7 +12,11 @@ public class Main {
         Callable<? extends Object> action = controller.getAction();
 
         while (action != null) {
-            action.call();
+            try {
+                action.call();
+            } catch (Exception e) {
+                System.out.println("Une erreur est survenue");
+            }
             action = controller.getAction();
         }
     }
