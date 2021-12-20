@@ -1,10 +1,14 @@
 package be.technifutur.menu;
 
-import be.technifutur.tp1.activity.CreateActivity;
+import be.technifutur.tp1.activity.ActivityView;
+import be.technifutur.tp1.activity.CreateActivityController;
+import be.technifutur.tp1.activity.ListActivityType;
 
 import java.util.concurrent.Callable;
 
 public class MenuFactory {
+    private ListActivityType modelActivityType = new ListActivityType();
+
     public MenuController getMenu() {
         return createMenu(getModelPrincipal());
     }
@@ -18,11 +22,11 @@ public class MenuFactory {
     }
 
     private MenuNode getItemCreateActivity() {
-        return createItem("Creer un nouveau type d'activite", new CreateActivity());
+        return createItem("Creer un nouveau type d'activite", getCreateActivityController());
     }
 
     private MenuNode getItemOthers() {
-        return createItem("Autres options (bientot disponible", null);
+        return createItem("Autres options (bientot disponible)", null);
     }
 
     private MenuNode createItem(String name, Callable<? extends Object> action) {
@@ -37,6 +41,13 @@ public class MenuFactory {
         menu.setModel(model);
         menu.setView(new MenuView());
         return menu;
+    }
+
+    private CreateActivityController getCreateActivityController() {
+        CreateActivityController createActivityController = new CreateActivityController();
+        createActivityController.setModel(modelActivityType);
+        createActivityController.setActivityView(new ActivityView());
+        return createActivityController;
     }
 
     // Définition des menus et sous-menus

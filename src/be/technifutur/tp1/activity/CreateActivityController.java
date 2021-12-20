@@ -1,40 +1,43 @@
 package be.technifutur.tp1.activity;
 
-public class CreateActivityController {
-    private ActivityView createActivityView;
+import java.util.concurrent.Callable;
+
+public class CreateActivityController implements Callable<ActivityType> {
+    private ActivityView activityView;
     private ListActivityType model;
 
-    public void setCreateActivityView(ActivityView createActivityView) {
-        this.createActivityView = createActivityView;
+    public void setActivityView(ActivityView activityView) {
+        this.activityView = activityView;
     }
 
     public void setModel(ListActivityType model) {
         this.model = model;
     }
 
-    public ActivityType createActivity() {
+    @Override
+    public ActivityType call() throws Exception {
         ActivityType newActivity = null;
         String name = "";
         String registrationString = "";
         boolean registration = false;
 
-        name = createActivityView.inputActivityName();
+        name = activityView.inputActivityName();
         // Si une activité dans le modèle possède déjà ce nom, on affiche un message d'erreur, ainsi
         // que l'activité en question.
         if (model.get(name) == null) {
-            registrationString = createActivityView.inputActivityRegistration();
+            registrationString = activityView.inputActivityRegistration();
             if (registrationString.equals("o") || registrationString.equals("n")) {
                 if(registrationString.equals("o")) registration = true;
 
                 newActivity = model.addActivityType(name, registration);
-                createActivityView.showNewActivity(newActivity);
+                activityView.showNewActivity(newActivity);
             } else {
-                createActivityView.invalidRegistrationInput(registrationString);
+                activityView.invalidRegistrationInput(registrationString);
             }
 
         } else {
-            createActivityView.alreadyExistingActivity(name, model);
+            activityView.alreadyExistingActivity(name, model);
         }
-        return newActivity;
+        return null;
     }
 }
