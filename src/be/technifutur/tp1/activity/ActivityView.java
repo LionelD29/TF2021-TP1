@@ -2,7 +2,7 @@ package be.technifutur.tp1.activity;
 
 import java.util.Scanner;
 
-public class CreateActivityView {
+public class ActivityView {
 
     private final Scanner scan = new Scanner(System.in);
 

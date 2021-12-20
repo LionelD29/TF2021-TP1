@@ -1,10 +1,10 @@
 package be.technifutur.tp1.activity;
 
 public class CreateActivityController {
-    private CreateActivityView createActivityView;
+    private ActivityView createActivityView;
     private ListActivityType model;
 
-    public void setCreateActivityView(CreateActivityView createActivityView) {
+    public void setCreateActivityView(ActivityView createActivityView) {
         this.createActivityView = createActivityView;
     }
 
