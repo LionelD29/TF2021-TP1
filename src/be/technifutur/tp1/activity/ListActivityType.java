@@ -15,6 +15,10 @@ public class ListActivityType implements Serializable {
         return activityTypes.put(name, newActivity) == null ? newActivity : null;
     }
 
+    public Map<String, ActivityType> getActivityList() {
+        return this.activityTypes;
+    }
+
     public ActivityType get(String name) {
         return activityTypes.get(name);
     }

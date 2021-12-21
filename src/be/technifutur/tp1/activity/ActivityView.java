@@ -1,16 +1,26 @@
 package be.technifutur.tp1.activity;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class ActivityView {
 
     private final Scanner scan = new Scanner(System.in);
 
+    public void printActivityList(ListActivityType model) {
+        System.out.println("Liste des activites :");
+        if (model.getActivityList().isEmpty()) {
+            System.out.println("*** vide ***");
+        } else {
+            for (Map.Entry<String, ActivityType> e : model.getActivityList().entrySet()) {
+                System.out.println(e.getValue());
+            }
+        }
+        System.out.println();
+    }
+
     public String inputActivityName() {
         String userInput = "";
-
-        System.out.println("Creation d'une nouvelle activite");
-        System.out.println();
 
         System.out.print("Nom du type d'activite : ");
         userInput = scan.nextLine();
@@ -28,8 +38,17 @@ public class ActivityView {
         return userInput;
     }
 
-    public void invalidRegistrationInput(String input) {
-        System.out.printf("*** %s n'est pas un choix valide d'inscription ***%n", input);
+    public String deleteActivityValidation(ListActivityType model, String name) {
+        String userInput = "";
+        System.out.printf("L'activite %s va etre supprimee.%n", model.get(name));
+        System.out.print("Etes-vous sur de vouloir continuer ? (o/n) : ");
+        userInput = scan.nextLine();
+
+        return userInput;
+    }
+
+    public void invalidYesNoInput(String input) {
+        System.out.printf("*** %s n'est pas un choix valide ***%n", input);
     }
 
     public void alreadyExistingActivity(String name, ListActivityType model) {
@@ -37,8 +56,20 @@ public class ActivityView {
         System.out.println(model.get(name));
     }
 
+    public void noSuchActivity(String name) {
+        System.out.printf("L'activite %s n'existe pas dans la liste%n", name);
+    }
+
     public void showNewActivity(ActivityType activity) {
         System.out.println("*** Nouvelle activite ajoutee ***");
         System.out.println(activity);
+    }
+
+    public void confirmDelete() {
+        System.out.println("*** Activite supprimee ***");
+    }
+
+    public void cancelActivityDelete() {
+        System.out.println("*** Suppression annulee ***");
     }
 }

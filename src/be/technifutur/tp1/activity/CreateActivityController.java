@@ -21,6 +21,11 @@ public class CreateActivityController implements Callable<ActivityType> {
         String registrationString = "";
         boolean registration = false;
 
+        activityView.printActivityList(model);
+
+        System.out.println("Creation d'une nouvelle activite");
+        System.out.println();
+
         name = activityView.inputActivityName();
         // Si une activité dans le modèle possède déjà ce nom, on affiche un message d'erreur, ainsi
         // que l'activité en question.
@@ -32,7 +37,7 @@ public class CreateActivityController implements Callable<ActivityType> {
                 newActivity = model.addActivityType(name, registration);
                 activityView.showNewActivity(newActivity);
             } else {
-                activityView.invalidRegistrationInput(registrationString);
+                activityView.invalidYesNoInput(registrationString);
             }
 
         } else {

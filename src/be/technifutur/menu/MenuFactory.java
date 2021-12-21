@@ -3,6 +3,7 @@ package be.technifutur.menu;
 import be.technifutur.tp1.activity.ActivityManagement;
 import be.technifutur.tp1.activity.ActivityView;
 import be.technifutur.tp1.activity.CreateActivityController;
+import be.technifutur.tp1.activity.DeleteActivityController;
 import be.technifutur.tp1.activity.ListActivityType;
 import be.technifutur.tp1.registration.RegistrationManagement;
 import be.technifutur.tp1.schedule.ScheduleManagement;
@@ -73,17 +74,28 @@ public class MenuFactory {
         return createItem("Creer un nouveau type d'activite", getCreateActivityController());
     }
 
+    private MenuNode getItemDeleteActivity() {
+        return createItem("Supprimer un type d'activite", getDeleteActivityController());
+    }
+
     private MenuNode getItemOthers() {
         return createItem("Autres options (bientot disponible)", null);
     }
 
 
-    // controlleur pour la création d'activités
+    // controlleur pour la gestion d'activités
     private CreateActivityController getCreateActivityController() {
-        CreateActivityController createActivityController = new CreateActivityController();
-        createActivityController.setModel(modelActivityType);
-        createActivityController.setActivityView(new ActivityView());
-        return createActivityController;
+        CreateActivityController controller = new CreateActivityController();
+        controller.setModel(modelActivityType);
+        controller.setActivityView(new ActivityView());
+        return controller;
+    }
+
+    private DeleteActivityController getDeleteActivityController() {
+        DeleteActivityController controller = new DeleteActivityController();
+        controller.setModel(modelActivityType);
+        controller.setActivityView(new ActivityView());
+        return controller;
     }
 
     // Définition des models
@@ -100,6 +112,7 @@ public class MenuFactory {
         MenuModel model = new MenuModel("Gestion des activites");
         model.addNode(getItemReturn());
         model.addNode(getItemCreateActivity());
+        model.addNode(getItemDeleteActivity());
         model.addNode(getItemOthers());
         return model;
     }
