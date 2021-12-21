@@ -2,22 +2,13 @@ package be.technifutur.tp1;
 
 import be.technifutur.menu.MenuController;
 import be.technifutur.menu.MenuFactory;
-
-import java.util.concurrent.Callable;
+import be.technifutur.util.Util;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         MenuFactory factory = new MenuFactory();
-        MenuController controller = factory.getMenu();
-        Callable<? extends Object> action = controller.getAction();
-
-        while (action != null) {
-            try {
-                action.call();
-            } catch (Exception e) {
-                System.out.println("Une erreur est survenue");
-            }
-            action = controller.getAction();
-        }
+        MenuController controller = factory.getMenuPrincipal();
+        Util.callAction(controller);
+        System.out.println("Fin du programme");
     }
 }

@@ -26,7 +26,7 @@ public class CreateActivityController implements Callable<ActivityType> {
         // que l'activité en question.
         if (model.get(name) == null) {
             registrationString = activityView.inputActivityRegistration();
-            if (registrationString.equals("o") || registrationString.equals("n")) {
+            if (registrationString.matches("[on]")) {
                 if(registrationString.equals("o")) registration = true;
 
                 newActivity = model.addActivityType(name, registration);

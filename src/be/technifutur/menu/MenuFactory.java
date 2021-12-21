@@ -1,5 +1,6 @@
 package be.technifutur.menu;
 
+import be.technifutur.tp1.activity.ActivityManagement;
 import be.technifutur.tp1.activity.ActivityView;
 import be.technifutur.tp1.activity.CreateActivityController;
 import be.technifutur.tp1.activity.ListActivityType;
@@ -9,18 +10,29 @@ import java.util.concurrent.Callable;
 public class MenuFactory {
     private ListActivityType modelActivityType = new ListActivityType();
 
-    public MenuController getMenu() {
+    public MenuController getMenuPrincipal() {
         return createMenu(getModelPrincipal());
     }
 
+    public MenuController getMenuActivityManagement() {
+        return createMenu(getModelActivityManagement());
+    }
+
+    // Items du menu principal
     private MenuNode getItemExit() {
         return createItem("Quitter le programme", null);
     }
 
+    private MenuNode getItemActivityManagement() {
+        return createItem("Gestion des activites", new ActivityManagement(getMenuActivityManagement()));
+    }
+
+    // Item de retour pour les sous-menus
     private MenuNode getItemReturn() {
         return createItem("Retour", null);
     }
 
+    // Items pour le menu Gestion des activités
     private MenuNode getItemCreateActivity() {
         return createItem("Creer un nouveau type d'activite", getCreateActivityController());
     }
@@ -28,6 +40,7 @@ public class MenuFactory {
     private MenuNode getItemOthers() {
         return createItem("Autres options (bientot disponible)", null);
     }
+
 
     private MenuNode createItem(String name, Callable<? extends Object> action) {
         Item item = new Item();
@@ -50,22 +63,22 @@ public class MenuFactory {
         return createActivityController;
     }
 
-    // Définition des menus et sous-menus
+    // Définition des models
     private MenuModel getModelPrincipal() {
         MenuModel model = new MenuModel("Menu principal");
         model.addNode(getItemExit());
-        model.addNode(getActivityManagement());
+        model.addNode(getItemActivityManagement());
         model.addNode(getScheduleManagement());
         model.addNode(getRegistrationManagement());
         return model;
     }
 
-    private MenuNode getActivityManagement() {
+    private MenuModel getModelActivityManagement() {
         MenuModel model = new MenuModel("Gestion des activites");
         model.addNode(getItemReturn());
         model.addNode(getItemCreateActivity());
         model.addNode(getItemOthers());
-        return createMenu(model);
+        return model;
     }
 
     private MenuNode getScheduleManagement() {
