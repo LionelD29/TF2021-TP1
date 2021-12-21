@@ -16,6 +16,9 @@ public class CreateActivityController implements Callable<ActivityType> {
 
     @Override
     public ActivityType call() throws Exception {
+        /*
+            Cette méthode sert a controller l'opération de création d'une nouvelle activité
+         */
         ActivityType newActivity = null;
         String name = "";
         String registrationString = "";
@@ -27,9 +30,10 @@ public class CreateActivityController implements Callable<ActivityType> {
         System.out.println();
 
         name = activityView.inputActivityName();
-        // Si une activité dans le modèle possède déjà ce nom, on affiche un message d'erreur, ainsi
+        // Si une activité dans le modèle possède déjà le nom entré par l'utilisateur, on affiche un message d'erreur, ainsi
         // que l'activité en question.
-        if (model.get(name) == null) {
+        ActivityType oldActivity = model.get(name);
+        if (oldActivity == null) {
             registrationString = activityView.inputActivityRegistration();
             if (registrationString.matches("[on]")) {
                 if(registrationString.equals("o")) registration = true;
@@ -39,9 +43,8 @@ public class CreateActivityController implements Callable<ActivityType> {
             } else {
                 activityView.invalidYesNoInput(registrationString);
             }
-
         } else {
-            activityView.alreadyExistingActivity(name, model);
+            activityView.alreadyExistingActivity(oldActivity);
         }
         return null;
     }

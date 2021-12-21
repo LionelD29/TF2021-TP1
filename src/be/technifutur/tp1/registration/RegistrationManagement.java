@@ -14,6 +14,7 @@ public class RegistrationManagement implements Callable<Object> {
 
     @Override
     public Object call() throws Exception {
+        // Fait tourner le menu de gestion des inscriptions
         Util.callAction(controller);
         System.out.println("Retour au menu principal");
         return null;

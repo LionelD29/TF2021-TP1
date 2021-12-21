@@ -11,6 +11,7 @@ public class ListActivityType implements Serializable {
     private Map<String, ActivityType> activityTypes = myDataStore.getData();
 
     public ActivityType addActivityType(String name, boolean registrationRequired) {
+        // Ajoute une activité, et renvoit cette même activité si elle n'a rien écrasé dans la map, et renvoit null sinon
         ActivityType newActivity = null;
         if (name != null && !name.equals("")) {
             newActivity = new ActivityType(name, registrationRequired);

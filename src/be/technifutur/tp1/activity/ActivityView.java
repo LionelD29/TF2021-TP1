@@ -19,6 +19,7 @@ public class ActivityView {
         System.out.println();
     }
 
+    // Demande les entrees de l'utilisateur
     public String inputActivityName() {
         String userInput = "";
 
@@ -38,26 +39,27 @@ public class ActivityView {
         return userInput;
     }
 
-    public String deleteActivityValidation(ListActivityType model, String name) {
+    public String deleteActivityValidation(ActivityType activity) {
         String userInput = "";
-        System.out.printf("L'activite %s va etre supprimee.%n", model.get(name));
+        System.out.printf("L'activite %s va etre supprimee.%n", activity);
         System.out.print("Etes-vous sur de vouloir continuer ? (o/n) : ");
         userInput = scan.nextLine();
 
         return userInput;
     }
 
+    // Messages
     public void invalidYesNoInput(String input) {
         System.out.printf("*** %s n'est pas un choix valide ***%n", input);
     }
 
-    public void alreadyExistingActivity(String name, ListActivityType model) {
-        System.out.printf("*** L'activite %s existe deja dans la liste ***%n", name);
-        System.out.println(model.get(name));
+    public void alreadyExistingActivity(ActivityType activity) {
+        System.out.printf("*** L'activite %s existe deja dans la liste ***%n", activity.getName());
+        System.out.println(activity);
     }
 
     public void noSuchActivity(String name) {
-        System.out.printf("L'activite %s n'existe pas dans la liste%n", name);
+        System.out.printf("*** L'activite %s n'existe pas dans la liste ***%n", name);
     }
 
     public void showNewActivity(ActivityType activity) {

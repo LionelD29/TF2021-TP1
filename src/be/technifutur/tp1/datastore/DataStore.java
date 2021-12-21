@@ -8,11 +8,14 @@ public class DataStore<D extends Serializable> {
     private String file;
     private D data;
 
+    // Rappel : un supplier est une méthode qui ne prend pas de paramètres et qui renvoit quelque chose
     public DataStore(String fileName, Supplier<D> supplier) {
         file = fileName;
         this.supplier = supplier;
     }
 
+    // En cas de FileNotFoundException, le supplier va instancier un objet du type D vide et le donner à data.
+    // Sinon, on lit le contenu du file, et on le stocke dans data.
     public D getData() {
         if (data == null) {
             try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(file))){

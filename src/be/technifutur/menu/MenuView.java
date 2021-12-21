@@ -14,7 +14,7 @@ public class MenuView {
         String choice;
         String menuName = menu.getName();
 
-        // print the menu
+        // Affiche le menu
         System.out.println();
         System.out.printf("%s%n", menuName);
         System.out.printf("%s%n", "-".repeat(menuName.length()));
@@ -27,7 +27,7 @@ public class MenuView {
             System.out.printf("*** Erreur : %s ***%n", this.error);
         }
 
-        // user input
+        // Entree de l'utilisateur
         System.out.print("Choix : ");
         choice = input.nextLine();
         System.out.println();
