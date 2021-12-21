@@ -13,6 +13,11 @@ import java.util.concurrent.Callable;
 public class MenuFactory {
     private ListActivityType modelActivityType = new ListActivityType();
 
+    // Sauvegarde dans le fichier ressources/datastore.txt
+    public void saveDataStore() {
+        modelActivityType.saveDataStore();
+    }
+
     // Methodes essentielles à la création d'items et de menus
     private MenuNode createItem(String name, Callable<? extends Object> action) {
         Item item = new Item();

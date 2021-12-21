@@ -9,6 +9,7 @@ public class Main {
         MenuFactory factory = new MenuFactory();
         MenuController controller = factory.getMenuPrincipal();
         Util.callAction(controller);
-        System.out.println("Fin du programme");
+        factory.saveDataStore();
+        System.out.println("Sauvegarde des donnees terminees. Fin du programme");
     }
 }
