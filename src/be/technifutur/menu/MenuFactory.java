@@ -9,11 +9,11 @@ import java.util.HashMap;
 import java.util.concurrent.Callable;
 
 public class MenuFactory {
-    private DataStore<ListActivityType> myDataStore = new DataStore<>(
+    private final DataStore<ListActivityType> myDataStore = new DataStore<>(
             "ressources/datastore.txt",
             ListActivityType::new
     );
-    private ListActivityType modelActivityType = myDataStore.getData();
+    private final ListActivityType modelActivityType = myDataStore.getData();
 
     // Sauvegarde dans le fichier ressources/datastore.txt
     public void saveDataStore() {
@@ -85,6 +85,10 @@ public class MenuFactory {
         return createItem("Supprimer un type d'activite", getDeleteActivityController());
     }
 
+    private MenuNode getItemModifyActivity() {
+        return createItem("Modifier un type d'activite", getModifyActivityController());
+    }
+
     private MenuNode getItemOthers() {
         return createItem("Autres options (bientot disponible)", null);
     }
@@ -105,6 +109,13 @@ public class MenuFactory {
         return controller;
     }
 
+    private ModifyActivityController getModifyActivityController() {
+        ModifyActivityController controller = new ModifyActivityController();
+        controller.setModel(modelActivityType);
+        controller.setActivityView(new ActivityView());
+        return controller;
+    }
+
     // Définition des models
     private MenuModel getModelPrincipal() {
         MenuModel model = new MenuModel("Menu principal");
@@ -120,6 +131,7 @@ public class MenuFactory {
         model.addNode(getItemReturn());
         model.addNode(getItemCreateActivity());
         model.addNode(getItemDeleteActivity());
+        model.addNode(getItemModifyActivity());
         model.addNode(getItemOthers());
         return model;
     }

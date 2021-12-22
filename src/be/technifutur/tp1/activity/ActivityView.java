@@ -39,6 +39,16 @@ public class ActivityView {
         return userInput;
     }
 
+    public String newActivityRegistration() {
+        String userInput = "";
+
+        System.out.println("Inscription : ");
+        System.out.println("o, n ou tapez la touche Enter pour ne pas modifier");
+        userInput = scan.nextLine();
+
+        return userInput;
+    }
+
     public String deleteActivityValidation(ActivityType activity) {
         String userInput = "";
         System.out.printf("L'activite %s va etre supprimee.%n", activity);
@@ -48,6 +58,15 @@ public class ActivityView {
         return userInput;
     }
 
+    public String newActivityName() {
+        String name = "";
+
+        System.out.println("Nouveau nom de l'activite :");
+        System.out.println("Tapez la touche Enter pour ne faire aucune modification");
+        name = scan.nextLine();
+
+        return name;
+    }
     // Messages
     public void invalidYesNoInput(String input) {
         System.out.printf("*** %s n'est pas un choix valide ***%n", input);
@@ -55,7 +74,7 @@ public class ActivityView {
 
     public void alreadyExistingActivity(ActivityType activity) {
         System.out.printf("*** L'activite %s existe deja dans la liste ***%n", activity.getName());
-        System.out.println(activity);
+        printActivity(activity);
     }
 
     public void noSuchActivity(String name) {
@@ -64,7 +83,7 @@ public class ActivityView {
 
     public void showNewActivity(ActivityType activity) {
         System.out.println("*** Nouvelle activite ajoutee ***");
-        System.out.println(activity);
+        printActivity(activity);
     }
 
     public void confirmDelete() {
@@ -73,5 +92,9 @@ public class ActivityView {
 
     public void cancelActivityDelete() {
         System.out.println("*** Suppression annulee ***");
+    }
+
+    public void printActivity(ActivityType activity) {
+        System.out.println(activity);
     }
 }
