@@ -2,7 +2,7 @@ package be.technifutur.tp1.activity;
 
 import java.util.concurrent.Callable;
 
-public class CreateActivityController implements Callable<ActivityType> {
+public class CreateActivityTypeController implements Callable<ActivityType> {
     private ActivityView activityView;
     private ListActivityType model;
 

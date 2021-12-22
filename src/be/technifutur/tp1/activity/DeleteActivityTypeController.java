@@ -2,7 +2,7 @@ package be.technifutur.tp1.activity;
 
 import java.util.concurrent.Callable;
 
-public class DeleteActivityController implements Callable<ActivityType> {
+public class DeleteActivityTypeController implements Callable<ActivityType> {
     private ListActivityType model;
     private ActivityView activityView;
 

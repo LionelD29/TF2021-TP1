@@ -1,8 +1,9 @@
 package be.technifutur.tp1.activity;
 
+import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class ModifyActivityController implements Callable<ActivityType> {
+public class ModifyActivityTypeController implements Callable<ActivityType> {
     private ListActivityType model;
     private ActivityView activityView;
 
@@ -21,12 +22,13 @@ public class ModifyActivityController implements Callable<ActivityType> {
          */
         String userInput = "";
         ActivityType activity;
+        String activityName = "";
 
         System.out.println("Modification d'une activite");
         System.out.println();
 
         userInput = activityView.inputActivityName();
-        activity = model.get(userInput);
+        activity = model.remove(userInput);
         if (activity != null) {
             activityView.printActivity(activity);
 
@@ -53,6 +55,8 @@ public class ModifyActivityController implements Callable<ActivityType> {
             }
 
             activityView.printActivity(activity);
+
+            model.addActivityType(activity.getName(), activity.isRegistrationRequired());
         } else {
             activityView.noSuchActivity(userInput);
         }

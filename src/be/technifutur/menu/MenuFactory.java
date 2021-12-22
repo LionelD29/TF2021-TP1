@@ -62,7 +62,7 @@ public class MenuFactory {
     }
 
     private MenuNode getItemScheduleManagement() {
-        return createItem("Gestion des horaires (bientot disponible)", new ScheduleManagementController(getMenuScheduleManagement()));
+        return createItem("Etablir l'horaire du stage", new ScheduleManagementController(getMenuScheduleManagement()));
     }
 
     private MenuNode getItemRegistrationManagement() {
@@ -76,40 +76,36 @@ public class MenuFactory {
     }
 
     // Items pour le menu Gestion des activités
-    private MenuNode getItemCreateActivity() {
-        return createItem("Creer un nouveau type d'activite", getCreateActivityController());
+    private MenuNode getItemCreateActivityType() {
+        return createItem("Creer un type d'activite", getCreateActivityTypeController());
     }
 
-    private MenuNode getItemDeleteActivity() {
-        return createItem("Supprimer un type d'activite", getDeleteActivityController());
+    private MenuNode getItemDeleteActivityType() {
+        return createItem("Supprimer un type d'activite", getDeleteActivityTypeController());
     }
 
-    private MenuNode getItemModifyActivity() {
-        return createItem("Modifier un type d'activite", getModifyActivityController());
-    }
-
-    private MenuNode getItemOthers() {
-        return createItem("Autres options (bientot disponible)", null);
+    private MenuNode getItemModifyActivityType() {
+        return createItem("Modifier un type d'activite", getModifyActivityTypeController());
     }
 
 
-    // controlleur pour la gestion d'activités
-    private CreateActivityController getCreateActivityController() {
-        CreateActivityController controller = new CreateActivityController();
+    // controlleur pour la gestion de types d'activités
+    private CreateActivityTypeController getCreateActivityTypeController() {
+        CreateActivityTypeController controller = new CreateActivityTypeController();
         controller.setModel(modelActivityType);
         controller.setActivityView(new ActivityView());
         return controller;
     }
 
-    private DeleteActivityController getDeleteActivityController() {
-        DeleteActivityController controller = new DeleteActivityController();
+    private DeleteActivityTypeController getDeleteActivityTypeController() {
+        DeleteActivityTypeController controller = new DeleteActivityTypeController();
         controller.setModel(modelActivityType);
         controller.setActivityView(new ActivityView());
         return controller;
     }
 
-    private ModifyActivityController getModifyActivityController() {
-        ModifyActivityController controller = new ModifyActivityController();
+    private ModifyActivityTypeController getModifyActivityTypeController() {
+        ModifyActivityTypeController controller = new ModifyActivityTypeController();
         controller.setModel(modelActivityType);
         controller.setActivityView(new ActivityView());
         return controller;
@@ -128,10 +124,9 @@ public class MenuFactory {
     private MenuModel getModelActivityManagement() {
         MenuModel model = new MenuModel("Gestion des activites");
         model.addNode(getItemReturn());
-        model.addNode(getItemCreateActivity());
-        model.addNode(getItemDeleteActivity());
-        model.addNode(getItemModifyActivity());
-        model.addNode(getItemOthers());
+        model.addNode(getItemCreateActivityType());
+        model.addNode(getItemDeleteActivityType());
+        model.addNode(getItemModifyActivityType());
         return model;
     }
 
