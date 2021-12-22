@@ -20,25 +20,24 @@ public class DeleteActivityTypeController implements Callable<ActivityType> {
             Cette méthode sert à controller l'opération de suppression d'une activité
          */
         String name;
-        String validation = "";
+        String validation;
 
-        System.out.println("Suppression d'une activite");
-        System.out.println();
+        activityView.printMessage("Suppression d'une activite");
 
         name = activityView.inputActivityName();
         // Si le nom entré par l'utilisateur n'existe pas parmi les activités, on affiche un message d'erreur
         ActivityType activity = model.get(name);
         if (activity != null) {
             validation = activityView.deleteActivityValidation(activity);
-            if (validation.matches("[on]")) {
-                if (validation.equals("o")) {
+            if (validation.matches("[onON]")) {
+                if (validation.equalsIgnoreCase("o")) {
                     model.remove(name);
-                    activityView.confirmDelete();
+                    activityView.printMessage("Activite supprimee");
                 } else {
-                    activityView.cancelActivityDelete();
+                    activityView.printMessage("Suppression annulee");
                 }
             } else {
-                activityView.invalidYesNoInput(validation);
+                activityView.invalidChoice(validation);
             }
         } else {
             activityView.noSuchActivity(name);

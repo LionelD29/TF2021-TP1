@@ -24,8 +24,7 @@ public class CreateActivityTypeController implements Callable<ActivityType> {
         String registrationString = "";
         boolean registration = false;
 
-        System.out.println("Creation d'une nouvelle activite");
-        System.out.println();
+        activityView.printMessage("Creation d'une nouvelle activite");
 
         name = activityView.inputActivityName();
         // Si une activité dans le modèle possède déjà le nom entré par l'utilisateur, on affiche un message d'erreur, ainsi
@@ -33,16 +32,18 @@ public class CreateActivityTypeController implements Callable<ActivityType> {
         ActivityType oldActivity = model.get(name);
         if (oldActivity == null) {
             registrationString = activityView.inputActivityRegistration();
-            if (registrationString.matches("[on]")) {
-                if(registrationString.equals("o")) registration = true;
+            if (registrationString.matches("[onON]")) {
+                if(registrationString.equalsIgnoreCase("o")) registration = true;
 
                 newActivity = model.addActivityType(name, registration);
-                activityView.showNewActivity(newActivity);
+                activityView.printMessage("Nouvelle activite ajoutee");
+                activityView.printActivity(newActivity);
             } else {
-                activityView.invalidYesNoInput(registrationString);
+                activityView.invalidChoice(registrationString);
             }
         } else {
-            activityView.alreadyExistingActivity(oldActivity);
+            activityView.printMessage("L'activite " + oldActivity.getName() + " existe deja dans la liste");
+            activityView.printActivity(oldActivity);
         }
         return null;
     }

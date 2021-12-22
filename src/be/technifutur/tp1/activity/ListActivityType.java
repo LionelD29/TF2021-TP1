@@ -1,7 +1,5 @@
 package be.technifutur.tp1.activity;
 
-import be.technifutur.tp1.datastore.DataStore;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,8 +27,4 @@ public class ListActivityType implements Serializable {
     public ActivityType remove(String name) {
         return activityTypes.remove(name);
     }
-
-    /*public void saveDataStore() {
-        myDataStore.save();
-    }*/
 }

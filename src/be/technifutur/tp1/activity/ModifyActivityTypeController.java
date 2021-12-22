@@ -1,6 +1,5 @@
 package be.technifutur.tp1.activity;
 
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class ModifyActivityTypeController implements Callable<ActivityType> {
@@ -24,10 +23,14 @@ public class ModifyActivityTypeController implements Callable<ActivityType> {
         ActivityType activity;
         String activityName = "";
 
-        System.out.println("Modification d'une activite");
-        System.out.println();
+        activityView.printMessage("Modification d'une activite");
 
         userInput = activityView.inputActivityName();
+        /*
+           On récupère l'activité en supprimant l'entrée correspondante dans la map.
+           On modifie si nécessaire cette activité ensuite
+           Puis on la réinsère dans la map
+        */
         activity = model.remove(userInput);
         if (activity != null) {
             activityView.printActivity(activity);
@@ -44,13 +47,13 @@ public class ModifyActivityTypeController implements Callable<ActivityType> {
             // Nouvelle inscription
             userInput = activityView.newActivityRegistration();
             // Tant que pas o, n ou "", on recommence la saisie
-            while (!userInput.matches("|[on]")) {
-                activityView.invalidYesNoInput(userInput);
+            while (!userInput.matches("|[onON]")) {
+                activityView.invalidChoice(userInput);
                 userInput = activityView.newActivityRegistration();
             }
-            if (userInput.equals("o")) {
+            if (userInput.equalsIgnoreCase("o")) {
                 activity.setRegistrationRequired(true);
-            } else if (userInput.equals("n")){
+            } else if (userInput.equalsIgnoreCase("n")){
                 activity.setRegistrationRequired(false);
             }
 
