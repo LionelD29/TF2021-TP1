@@ -8,12 +8,14 @@ public class ActivityView {
     private final Scanner scan = new Scanner(System.in);
 
     public void printActivityList(ListActivityType model) {
+        System.out.println();
+        System.out.println();
         System.out.println("Liste des activites :");
         if (model.getActivityList().isEmpty()) {
             System.out.println("*** vide ***");
         } else {
             for (Map.Entry<String, ActivityType> e : model.getActivityList().entrySet()) {
-                System.out.println(e.getValue());
+                System.out.printf("\t* %s%n", e.getValue());
             }
         }
         System.out.println();
@@ -25,7 +27,6 @@ public class ActivityView {
 
         System.out.print("Nom du type d'activite : ");
         userInput = scan.nextLine();
-        System.out.println();
 
         return userInput;
     }

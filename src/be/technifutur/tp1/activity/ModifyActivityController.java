@@ -22,8 +22,6 @@ public class ModifyActivityController implements Callable<ActivityType> {
         String userInput = "";
         ActivityType activity;
 
-        activityView.printActivityList(model);
-
         System.out.println("Modification d'une activite");
         System.out.println();
 

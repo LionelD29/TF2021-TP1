@@ -2,10 +2,9 @@ package be.technifutur.menu;
 
 import be.technifutur.tp1.activity.*;
 import be.technifutur.tp1.datastore.DataStore;
-import be.technifutur.tp1.registration.RegistrationManagement;
-import be.technifutur.tp1.schedule.ScheduleManagement;
+import be.technifutur.tp1.registration.RegistrationManagementController;
+import be.technifutur.tp1.schedule.ScheduleManagementController;
 
-import java.util.HashMap;
 import java.util.concurrent.Callable;
 
 public class MenuFactory {
@@ -59,15 +58,15 @@ public class MenuFactory {
     }
 
     private MenuNode getItemActivityManagement() {
-        return createItem("Gestion des activites", new ActivityManagement(getMenuActivityManagement()));
+        return createItem("Gestion des activites", new ActivityManagementController(getMenuActivityManagement(), modelActivityType));
     }
 
     private MenuNode getItemScheduleManagement() {
-        return createItem("Gestion des horaires (bientot disponible)", new ScheduleManagement(getMenuScheduleManagement()));
+        return createItem("Gestion des horaires (bientot disponible)", new ScheduleManagementController(getMenuScheduleManagement()));
     }
 
     private MenuNode getItemRegistrationManagement() {
-        return createItem("Gestion des inscriptions (bientot disponible)", new RegistrationManagement(getMenuRegistrationManagement()));
+        return createItem("Gestion des inscriptions (bientot disponible)", new RegistrationManagementController(getMenuRegistrationManagement()));
     }
 
 

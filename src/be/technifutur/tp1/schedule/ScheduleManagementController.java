@@ -1,21 +1,20 @@
-package be.technifutur.tp1.registration;
+package be.technifutur.tp1.schedule;
 
 import be.technifutur.menu.MenuController;
 import be.technifutur.util.Util;
 
 import java.util.concurrent.Callable;
 
-public class RegistrationManagement implements Callable<Object> {
+public class ScheduleManagementController implements Callable<Object> {
     private MenuController controller;
 
-    public RegistrationManagement(MenuController controller) {
+    public ScheduleManagementController(MenuController controller) {
         this.controller = controller;
     }
 
     @Override
     public Object call() throws Exception {
-        // Fait tourner le menu de gestion des inscriptions
-        Util.callAction(controller);
+        // Fait tourner le menu de gestion des horaires
         System.out.println("Retour au menu principal");
         return null;
     }

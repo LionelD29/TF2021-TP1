@@ -22,8 +22,6 @@ public class DeleteActivityController implements Callable<ActivityType> {
         String name;
         String validation = "";
 
-        activityView.printActivityList(model);
-
         System.out.println("Suppression d'une activite");
         System.out.println();
 

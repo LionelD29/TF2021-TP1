@@ -24,8 +24,6 @@ public class CreateActivityController implements Callable<ActivityType> {
         String registrationString = "";
         boolean registration = false;
 
-        activityView.printActivityList(model);
-
         System.out.println("Creation d'une nouvelle activite");
         System.out.println();
 

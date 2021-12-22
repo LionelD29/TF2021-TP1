@@ -15,7 +15,6 @@ public class MenuView {
         String menuName = menu.getName();
 
         // Affiche le menu
-        System.out.println();
         System.out.printf("%s%n", menuName);
         System.out.printf("%s%n", "-".repeat(menuName.length()));
         System.out.println("Que voulez-vous faire ?");
