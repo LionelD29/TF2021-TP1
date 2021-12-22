@@ -1,21 +1,23 @@
 package be.technifutur.menu;
 
-import be.technifutur.tp1.activity.ActivityManagement;
-import be.technifutur.tp1.activity.ActivityView;
-import be.technifutur.tp1.activity.CreateActivityController;
-import be.technifutur.tp1.activity.DeleteActivityController;
-import be.technifutur.tp1.activity.ListActivityType;
+import be.technifutur.tp1.activity.*;
+import be.technifutur.tp1.datastore.DataStore;
 import be.technifutur.tp1.registration.RegistrationManagement;
 import be.technifutur.tp1.schedule.ScheduleManagement;
 
+import java.util.HashMap;
 import java.util.concurrent.Callable;
 
 public class MenuFactory {
-    private ListActivityType modelActivityType = new ListActivityType();
+    private DataStore<ListActivityType> myDataStore = new DataStore<>(
+            "ressources/datastore.txt",
+            ListActivityType::new
+    );
+    private ListActivityType modelActivityType = myDataStore.getData();
 
     // Sauvegarde dans le fichier ressources/datastore.txt
     public void saveDataStore() {
-        modelActivityType.saveDataStore();
+        myDataStore.save();
     }
 
     // Methodes essentielles à la création d'items et de menus

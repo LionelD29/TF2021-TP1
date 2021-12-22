@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ListActivityType implements Serializable {
-    private DataStore< HashMap<String, ActivityType> > myDataStore = new DataStore<>("ressources/datastore.txt", HashMap::new);
-    private Map<String, ActivityType> activityTypes = myDataStore.getData();
+    private Map<String, ActivityType> activityTypes = new HashMap<>();
 
     public ActivityType addActivityType(String name, boolean registrationRequired) {
         // Ajoute une activité, et renvoit cette même activité si elle n'a rien écrasé dans la map, et renvoit null sinon
@@ -31,7 +30,7 @@ public class ListActivityType implements Serializable {
         return activityTypes.remove(name);
     }
 
-    public void saveDataStore() {
+    /*public void saveDataStore() {
         myDataStore.save();
-    }
+    }*/
 }
