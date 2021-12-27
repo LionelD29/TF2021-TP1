@@ -1,30 +1,38 @@
-# TF2021-TP1
-## Projet de la première session de travaux pratiques
-### Introduction
-Le projet consiste en de la gestion d'inscription à des activités de stage.
-Il s'agit d'une application en console, où les choix sont affichés sous forme de menus. Le code pour la construction et la gestion de menus est repris et adapté du projet TF2021-Menu implémenté plus tôt dans la formation (https://github.com/LionelD29/TF2021-Menu)
+# Projet de la première session de travaux pratiques
+## Gestion des inscriptions à un stage
+### Présentation du projet
+Le projet est un programme de gestion d'inscriptions à des activités de stage.
+Il s'agit d'une application en console où l'on peut gérer des types d'activités, des horaires (ajouter des activités, modifier les horaires d'activités ou les supprimer) ainsi que les inscriptions aux différentes activités.
+Les données (types d'activités, horaires, inscriptions, ...) sont sauvegardées dans un fichier externe.
+Les choix possibles de l'utilisateur sont affichés sous forme de menus. Le code pour la construction et la gestion de menus est repris et amélioré du projet [TF2021_Menu](https://github.com/LionelD29/TF2021-Menu) terminé plus tôt dans la formation.
 
-Il est séparé en trois parties :
+- - - -
 
-* Gestion des activités
-* Gestion des horaires d'activités
-* Gestion des inscriptions aux activités
+### ✔️ Gestion des types d'activités
+Diverses opérations peuvent être effectuées sur les types d'activités :
+- [X] **Créer** un nouveau type d'activité
+- [X] **Supprimer** un type d'activité
+- [X] **Modifier** un type d'activité
 
-### Gestion des activités
-Diverses opérations peuvent être effectuées sur les activités :
+### ✅ Gestion des horaires
+On travaille avec des activités qui possèdent un type d'activité, un nom, un moment de début et de fin.
 
-* Créer une nouvelle activité
-* Supprimer une activité existante
-* Modifier une activité existante (__à implémenter__)
-* Visualiser le descriptif d'une activité (__à implémenter__)
+Dans l'horaire, on peut effectuer les actions suivantes :
+- [ ] **Ajouter** une activité à l'horaire
+- [ ] **Modifier** l'horaire d'une activité
+- [ ] **Supprimer** une activité de l'horaire
 
-### Gestion des horaires (à implémenter)
-À venir..
-
-### Gestion des inscriptions (à implémenter)
+### ❌ Gestion des inscriptions
 À venir...
 
-### Sauvegarde des données
-Les données de l'application (activités, horaires et inscriptions) sont sauvées dans un fichier externe.
+### ✅ Sauvegarde des données
+Les données de l'application (types d'activités, horaires et inscriptions) sont sauvées dans un fichier externe.
+Actuellement, seuls les types d'activités sont sauvegardées, les autres types de données n'étant pas encore totalement implémentés.
 
-Actuellement, seules les activités sont sauvegardées, les autres types de données n'étant pas encore implémentés.
+### ❌ Diagrammes UML de l'application
+À venir...
+
+- - - -
+
+### Légende :
+✔️ : section finie &emsp;|&emsp; ✅ : section en cours &emsp;|&emsp; ❌ : section à faire
