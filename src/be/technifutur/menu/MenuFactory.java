@@ -62,7 +62,7 @@ public class MenuFactory {
     }
 
     private MenuNode getItemScheduleManagement() {
-        return createItem("Etablir l'horaire du stage", new ScheduleManagementController(getMenuScheduleManagement()));
+        return createItem("Etablir l'horaire du stage (En cours)", new ScheduleManagementController(getMenuScheduleManagement()));
     }
 
     private MenuNode getItemRegistrationManagement() {
@@ -131,7 +131,7 @@ public class MenuFactory {
     }
 
     private MenuModel getModelScheduleManagement() {
-        MenuModel model = new MenuModel("Gestion des horaires (Bientot disponible)");
+        MenuModel model = new MenuModel("Etablir l'horaire du stage (En cours)");
         model.addNode(getItemReturn());
         return model;
     }

@@ -15,6 +15,7 @@ public class ScheduleManagementController implements Callable<Object> {
     @Override
     public Object call() throws Exception {
         // Fait tourner le menu de gestion des horaires
+        Util.callAction(controller);
         System.out.println("Retour au menu principal");
         return null;
     }
