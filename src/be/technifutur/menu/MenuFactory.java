@@ -3,10 +3,7 @@ package be.technifutur.menu;
 import be.technifutur.tp1.activityType.*;
 import be.technifutur.tp1.datastore.DataStore;
 import be.technifutur.tp1.registration.RegistrationManagementController;
-import be.technifutur.tp1.schedule.AddActivityController;
-import be.technifutur.tp1.schedule.Schedule;
-import be.technifutur.tp1.schedule.ScheduleManagementController;
-import be.technifutur.tp1.schedule.ScheduleView;
+import be.technifutur.tp1.schedule.*;
 
 import java.util.concurrent.Callable;
 
@@ -98,6 +95,10 @@ public class MenuFactory {
         return createItem("Ajouter une activite a l'horaire (en cours)", getAddActivityController());
     }
 
+    private MenuNode getItemModifyActivitySchedule() {
+        return createItem("Modifier l'horaire d'une activite (en cours)", getModifyActivityScheduleController());
+    }
+
     // Controlleurs pour la gestion de types d'activités
     private CreateActivityTypeController getCreateActivityTypeController() {
         CreateActivityTypeController controller = new CreateActivityTypeController();
@@ -129,6 +130,14 @@ public class MenuFactory {
         return controller;
     }
 
+    private ModifyActivityScheduleController getModifyActivityScheduleController() {
+        ModifyActivityScheduleController controller = new ModifyActivityScheduleController();
+        controller.setModelActivityType(modelActivityType);
+        controller.setModelSchedule(modelSchedule);
+        controller.setScheduleView(new ScheduleView());
+        return controller;
+    }
+
     // Définition des models
     private MenuModel getModelPrincipal() {
         MenuModel model = new MenuModel("Menu principal");
@@ -152,6 +161,7 @@ public class MenuFactory {
         MenuModel model = new MenuModel("Etablir l'horaire du stage (En cours)");
         model.addNode(getItemReturn());
         model.addNode(getItemAddActivity());
+        model.addNode(getItemModifyActivitySchedule());
         return model;
     }
 
