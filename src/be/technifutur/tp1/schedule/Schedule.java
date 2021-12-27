@@ -1,7 +1,7 @@
 package be.technifutur.tp1.schedule;
 
 import be.technifutur.tp1.activity.Activity;
-import be.technifutur.tp1.activity.ActivityType;
+import be.technifutur.tp1.activityType.ActivityType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

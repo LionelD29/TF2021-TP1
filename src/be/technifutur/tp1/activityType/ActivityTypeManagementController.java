@@ -1,17 +1,17 @@
-package be.technifutur.tp1.activity;
+package be.technifutur.tp1.activityType;
 
 import be.technifutur.menu.MenuController;
 import be.technifutur.util.Util;
 
 import java.util.concurrent.Callable;
 
-public class ActivityManagementController implements Callable<ActivityType> {
+public class ActivityTypeManagementController implements Callable<ActivityType> {
     private MenuController controller;
     private ListActivityType model;
     private ActivityView activityView = new ActivityView();
 
-    public ActivityManagementController(MenuController activityManagementController,
-                                        ListActivityType model) {
+    public ActivityTypeManagementController(MenuController activityManagementController,
+                                            ListActivityType model) {
         this.controller = activityManagementController;
         this.model = model;
     }

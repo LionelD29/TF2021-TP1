@@ -1,4 +1,4 @@
-package be.technifutur.tp1.activity;
+package be.technifutur.tp1.activityType;
 
 import java.util.Map;
 import java.util.Scanner;

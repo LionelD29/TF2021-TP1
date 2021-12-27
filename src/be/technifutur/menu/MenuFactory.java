@@ -1,9 +1,12 @@
 package be.technifutur.menu;
 
-import be.technifutur.tp1.activity.*;
+import be.technifutur.tp1.activityType.*;
 import be.technifutur.tp1.datastore.DataStore;
 import be.technifutur.tp1.registration.RegistrationManagementController;
+import be.technifutur.tp1.schedule.AddActivityController;
+import be.technifutur.tp1.schedule.Schedule;
 import be.technifutur.tp1.schedule.ScheduleManagementController;
+import be.technifutur.tp1.schedule.ScheduleView;
 
 import java.util.concurrent.Callable;
 
@@ -13,6 +16,8 @@ public class MenuFactory {
             ListActivityType::new
     );
     private final ListActivityType modelActivityType = myDataStore.getData();
+
+    private final Schedule modelSchedule = new Schedule();
 
     // Sauvegarde dans le fichier ressources/datastore.txt
     public void saveDataStore() {
@@ -58,7 +63,7 @@ public class MenuFactory {
     }
 
     private MenuNode getItemActivityManagement() {
-        return createItem("Gestion des activites", new ActivityManagementController(getMenuActivityManagement(), modelActivityType));
+        return createItem("Gestion des activites", new ActivityTypeManagementController(getMenuActivityManagement(), modelActivityType));
     }
 
     private MenuNode getItemScheduleManagement() {
@@ -88,8 +93,12 @@ public class MenuFactory {
         return createItem("Modifier un type d'activite", getModifyActivityTypeController());
     }
 
+    // Items pour le menu Etablir l'horaire du stage
+    private MenuNode getItemAddActivity() {
+        return createItem("Ajouter une activite a l'horaire (en cours)", getAddActivityController());
+    }
 
-    // controlleur pour la gestion de types d'activités
+    // Controlleurs pour la gestion de types d'activités
     private CreateActivityTypeController getCreateActivityTypeController() {
         CreateActivityTypeController controller = new CreateActivityTypeController();
         controller.setModel(modelActivityType);
@@ -108,6 +117,15 @@ public class MenuFactory {
         ModifyActivityTypeController controller = new ModifyActivityTypeController();
         controller.setModel(modelActivityType);
         controller.setActivityView(new ActivityView());
+        return controller;
+    }
+
+    // Controlleurs pour l'établissement de l'horaire du stage
+    private AddActivityController getAddActivityController() {
+        AddActivityController controller = new AddActivityController();
+        controller.setModelActivityType(modelActivityType);
+        controller.setModelSchedule(modelSchedule);
+        controller.setScheduleView(new ScheduleView());
         return controller;
     }
 
@@ -133,6 +151,7 @@ public class MenuFactory {
     private MenuModel getModelScheduleManagement() {
         MenuModel model = new MenuModel("Etablir l'horaire du stage (En cours)");
         model.addNode(getItemReturn());
+        model.addNode(getItemAddActivity());
         return model;
     }
 

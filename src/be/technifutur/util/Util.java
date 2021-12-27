@@ -1,8 +1,8 @@
 package be.technifutur.util;
 
 import be.technifutur.menu.MenuController;
-import be.technifutur.tp1.activity.ActivityView;
-import be.technifutur.tp1.activity.ListActivityType;
+import be.technifutur.tp1.activityType.ActivityView;
+import be.technifutur.tp1.activityType.ListActivityType;
 
 import java.util.concurrent.Callable;
 

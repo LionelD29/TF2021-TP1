@@ -1,4 +1,4 @@
-package be.technifutur.tp1.activity;
+package be.technifutur.tp1.activityType;
 
 import java.io.Serializable;
 import java.util.HashMap;
