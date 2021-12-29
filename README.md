@@ -1,12 +1,14 @@
-# Projet de la première session de travaux pratiques
-## Gestion des inscriptions à un stage
-### Présentation du projet
+# Gestion des inscriptions à un stage
+## Présentation du projet
 Le projet est un programme de gestion d'inscriptions à des activités de stage.
 Il s'agit d'une application en console où l'on peut gérer des types d'activités, des horaires (ajouter des activités, modifier les horaires d'activités ou les supprimer) ainsi que les inscriptions aux différentes activités.
 Les données (types d'activités, horaires, inscriptions, ...) sont sauvegardées dans un fichier externe.
 Les choix possibles de l'utilisateur sont affichés sous forme de menus. Le code pour la construction et la gestion de menus est repris et amélioré du projet [TF2021_Menu](https://github.com/LionelD29/TF2021-Menu) terminé plus tôt dans la formation.
 
-- - - -
+## Progression du projet
+Le projet est toujours en cours de développement. La progression est représentée à l'aide d'icônes.
+
+(*voir la [légende](#légende) en fin de page*)
 
 ### ✔️ Gestion des types d'activités
 Diverses opérations peuvent être effectuées sur les types d'activités :
@@ -34,5 +36,5 @@ Actuellement, seuls les types d'activités sont sauvegardées, les autres types 
 
 - - - -
 
-### Légende :
+#### Légende
 ✔️ : section finie &emsp;|&emsp; ✅ : section en cours &emsp;|&emsp; ❌ : section à faire
