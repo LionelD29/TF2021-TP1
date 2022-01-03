@@ -10,13 +10,13 @@ Le projet est toujours en cours de développement. La progression est représent
 
 (*voir la [légende](#légende) en fin de page*)
 
-### ✔️ Gestion des types d'activités
+### ✅ Gestion des types d'activités
 Diverses opérations peuvent être effectuées sur les types d'activités :
 - [X] **Créer** un nouveau type d'activité
 - [X] **Supprimer** un type d'activité
 - [X] **Modifier** un type d'activité
 
-### ✅ Gestion des horaires
+### ✔️ Gestion des horaires
 On travaille avec des activités qui possèdent un type d'activité, un nom, un moment de début et de fin.
 
 Dans l'horaire, on peut effectuer les actions suivantes :
@@ -27,7 +27,7 @@ Dans l'horaire, on peut effectuer les actions suivantes :
 ### ❌ Gestion des inscriptions
 À venir...
 
-### ✅ Sauvegarde des données
+### ✔️ Sauvegarde des données
 Les données de l'application (types d'activités, horaires et inscriptions) sont sauvées dans un fichier externe.
 Actuellement, seuls les types d'activités sont sauvegardées, les autres types de données n'étant pas encore totalement implémentés.
 
@@ -37,4 +37,4 @@ Actuellement, seuls les types d'activités sont sauvegardées, les autres types 
 - - - -
 
 #### Légende
-✔️ : section finie &emsp;|&emsp; ✅ : section en cours &emsp;|&emsp; ❌ : section à faire
+✅ : section finie &emsp;|&emsp; ✔️ : section en cours &emsp;|&emsp; ❌ : section à faire
