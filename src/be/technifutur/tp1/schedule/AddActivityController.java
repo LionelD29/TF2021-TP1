@@ -2,15 +2,17 @@ package be.technifutur.tp1.schedule;
 
 import be.technifutur.tp1.activity.Activity;
 import be.technifutur.tp1.activityType.ActivityType;
+import be.technifutur.tp1.activityType.CreateActivityTypeController;
 import be.technifutur.tp1.activityType.ListActivityType;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.Callable;
 
 public class AddActivityController implements Callable<Activity> {
-    Schedule modelSchedule;
-    ListActivityType modelActivityType;
-    ScheduleView scheduleView;
+    private Schedule modelSchedule;
+    private ListActivityType modelActivityType;
+    private ScheduleView scheduleView;
+    private CreateActivityTypeController createActivityTypeController;
 
     public void setModelSchedule(Schedule modelSchedule) {
         this.modelSchedule = modelSchedule;
@@ -24,27 +26,47 @@ public class AddActivityController implements Callable<Activity> {
         this.scheduleView = scheduleView;
     }
 
+    public void setCreateActivityTypeController(CreateActivityTypeController createActivityTypeController) {
+        this.createActivityTypeController = createActivityTypeController;
+    }
+
     @Override
     public Activity call() throws Exception {
         String activityType = scheduleView.selectActivityType();
         ActivityType type = modelActivityType.get(activityType);
         if (type != null) {
-            String activityName = scheduleView.chooseActivityName();
-            LocalDateTime start = scheduleView.chooseActivityTime("debut");
-            while (start.compareTo(LocalDateTime.now()) <= 0) {
-                scheduleView.printMessage("L'activite ne peut pas debuter dans le passe");
-                start = scheduleView.chooseActivityTime("debut");
-            }
-            LocalDateTime end = scheduleView.chooseActivityTime("fin");
-            while (end.compareTo(start) <= 0) {
-                scheduleView.printMessage("La fin de l'activite doit etre posterieure a son debut");
-                end = scheduleView.chooseActivityTime("fin");
-            }
-            Activity newActivity = modelSchedule.addActivity(start, end, activityName, type);
-            scheduleView.printMessage("L'activite " + newActivity.getName() + " a bien ete ajoutee");
+            addActivity(type);
         } else {
-            scheduleView.noSuchActivityType(activityType);
+            String confirmation = scheduleView.confirmCreation();
+            while (!confirmation.matches("[onON]")) {
+                scheduleView.invalidChoice(confirmation);
+                confirmation = scheduleView.confirmCreation();
+            }
+
+            if (confirmation.equalsIgnoreCase("o")) {
+                createActivityTypeController.call();
+                type = modelActivityType.get(activityType);
+                addActivity(type);
+            } else {
+                scheduleView.printMessage("Le type d'activite n'a pas ete cree");
+            }
         }
         return null;
+    }
+
+    private void addActivity(ActivityType type) {
+        String activityName = scheduleView.chooseActivityName();
+        LocalDateTime start = scheduleView.chooseActivityTime("debut");
+        while (start.compareTo(LocalDateTime.now()) <= 0) {
+            scheduleView.printMessage("L'activite ne peut pas debuter dans le passe");
+            start = scheduleView.chooseActivityTime("debut");
+        }
+        LocalDateTime end = scheduleView.chooseActivityTime("fin");
+        while (end.compareTo(start) <= 0) {
+            scheduleView.printMessage("La fin de l'activite doit etre posterieure a son debut");
+            end = scheduleView.chooseActivityTime("fin");
+        }
+        Activity newActivity = modelSchedule.addActivity(start, end, activityName, type);
+        scheduleView.printMessage("L'activite " + newActivity.getName() + " a bien ete ajoutee");
     }
 }

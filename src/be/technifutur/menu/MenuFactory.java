@@ -46,7 +46,7 @@ public class MenuFactory {
         MenuModel model = new MenuModel("Menu principal");
         model.addNode(createItem("Quitter le programme", null));
         model.addNode(createItem("Gestion des activites", new ActivityTypeManagementController(getMenuActivityManagement(), modelActivityType)));
-        model.addNode(createItem("Etablir l'horaire du stage (En cours)", new ScheduleManagementController(getMenuScheduleManagement(), modelSchedule)));
+        model.addNode(createItem("Etablir l'horaire du stage", new ScheduleManagementController(getMenuScheduleManagement(), modelSchedule)));
         model.addNode(createItem("Gestion des inscriptions (bientot disponible)", new RegistrationManagementController(getMenuRegistrationManagement())));
         return createMenu(model);
     }
@@ -61,11 +61,11 @@ public class MenuFactory {
     }
 
     public MenuController getMenuScheduleManagement() {
-        MenuModel model = new MenuModel("Etablir l'horaire du stage (En cours)");
+        MenuModel model = new MenuModel("Etablir l'horaire du stage");
         model.addNode(getItemReturn());
-        model.addNode(createItem("Ajouter une activite a l'horaire (en cours)", getAddActivityController()));
-        model.addNode(createItem("Modifier l'horaire d'une activite (en cours)", getModifyActivityScheduleController()));
-        model.addNode(createItem("Supprimer une activite de l'horaire (en cours)", getDeleteActivityController()));
+        model.addNode(createItem("Ajouter une activite a l'horaire", getAddActivityController()));
+        model.addNode(createItem("Modifier l'horaire d'une activite", getModifyActivityScheduleController()));
+        model.addNode(createItem("Supprimer une activite de l'horaire", getDeleteActivityController()));
         model.addNode(createItem("Afficher la liste des types d'activites", getReadActivityTypeController()));
         return createMenu(model);
     }
@@ -113,6 +113,7 @@ public class MenuFactory {
         AddActivityController controller = new AddActivityController();
         controller.setModelActivityType(modelActivityType);
         controller.setModelSchedule(modelSchedule);
+        controller.setCreateActivityTypeController(getCreateActivityTypeController());
         controller.setScheduleView(new ScheduleView());
         return controller;
     }

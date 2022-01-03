@@ -98,4 +98,11 @@ public class ScheduleView {
     public void invalidChoice(String choice) {
         System.out.printf("*** %s n'est pas un choix valide ***%n", choice);
     }
+
+    public String confirmCreation() {
+        System.out.println("Ce type d'activite n'existe pas encore dans la liste.");
+        System.out.print("Voulez-vous le creer ? (o/n)");
+        userInput = scan.nextLine();
+        return userInput;
+    }
 }

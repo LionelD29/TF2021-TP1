@@ -17,16 +17,16 @@ public class ModifyActivityTypeController implements Callable<ActivityType> {
     @Override
     public ActivityType call() throws Exception {
         /*
-            Cette méthode permet de modifier une activité existante
+            Cette méthode permet de modifier un type d'activite existant
          */
         String userInput;
         ActivityType activity;
 
-        activityView.printMessage("Modification d'une activite");
+        activityView.printMessage("Modification d'un type d'activite");
 
         userInput = activityView.inputActivityName();
         /*
-           On récupère l'activité en supprimant l'entrée correspondante dans la map.
+           On récupère le type d'activite en supprimant l'entrée correspondante dans la map.
            On modifie si nécessaire cette activité ensuite
            Puis on la réinsère dans la map
         */

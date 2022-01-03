@@ -13,7 +13,8 @@ public class ActivityView {
     }
 
     public void printActivityList(ListActivityType model) {
-        System.out.println("\n\nListe des activites :");
+        System.out.println("\n\nListe des types d'activites");
+        System.out.println("-".repeat("Liste des types d'activites".length()));
         if (model.getActivityList().isEmpty()) {
             System.out.println("*** vide ***");
         } else {
@@ -32,14 +33,14 @@ public class ActivityView {
     }
 
     public String newActivityName() {
-        System.out.println("Nouveau nom de l'activite :");
+        System.out.println("Nouveau nom du type d'activite :");
         System.out.println("Tapez la touche Enter pour ne faire aucune modification");
         userInput = scan.nextLine();
         return userInput;
     }
 
     public String inputActivityRegistration() {
-        System.out.print("Cette activite necessite-t-elle une inscription ? (o/n) : ");
+        System.out.print("Ce type d'activite necessite-t-il une inscription ? (o/n) : ");
         userInput = scan.nextLine();
         return userInput;
     }
@@ -52,7 +53,7 @@ public class ActivityView {
     }
 
     public String deleteActivityValidation(ActivityType activity) {
-        System.out.printf("L'activite %s va etre supprimee.%n", activity);
+        System.out.printf("Le type d'activite %s va etre supprimee.%n", activity);
         System.out.print("Etes-vous sur de vouloir continuer ? (o/n) : ");
         userInput = scan.nextLine();
         return userInput;
@@ -68,11 +69,11 @@ public class ActivityView {
     }
 
     public void noSuchActivity(String activity) {
-        System.out.printf("*** L'activite %s n'existe pas dans la liste ***%n", activity);
+        System.out.printf("*** Le type d'activite %s n'existe pas dans la liste ***%n", activity);
     }
 
     public void usedActivity(String activity) {
         System.out.println("*** Suppression impossible ***");
-        System.out.printf("    L'activite %s est actuellement utilisee dans l'horaire%n", activity);
+        System.out.printf("    Le type d'activite %s est actuellement utilisee dans l'horaire%n", activity);
     }
 }

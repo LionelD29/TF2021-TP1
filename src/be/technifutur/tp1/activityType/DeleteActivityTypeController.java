@@ -25,16 +25,16 @@ public class DeleteActivityTypeController implements Callable<ActivityType> {
     @Override
     public ActivityType call() throws Exception {
         /*
-            Cette méthode sert à controller l'opération de suppression d'une activité
+            Cette méthode sert à controller l'opération de suppression d'un type d'activité
          */
         String name;
         String validation;
         boolean isActivityTypeUsed = false;
 
-        activityView.printMessage("Suppression d'une activite");
+        activityView.printMessage("Suppression d'un type d'activite");
 
         name = activityView.inputActivityName();
-        // Si le nom entré par l'utilisateur n'existe pas parmi les activités, on affiche un message d'erreur
+        // Si le nom entré par l'utilisateur n'existe pas parmi les types d'activités, on affiche un message d'erreur
         ActivityType activity = model.get(name);
 
         if (activity != null) {
@@ -50,7 +50,7 @@ public class DeleteActivityTypeController implements Callable<ActivityType> {
                 if (validation.matches("[onON]")) {
                     if (validation.equalsIgnoreCase("o")) {
                         model.remove(name);
-                        activityView.printMessage("Activite supprimee");
+                        activityView.printMessage("Type d'activite supprimee");
                     } else {
                         activityView.printMessage("Suppression annulee");
                     }
