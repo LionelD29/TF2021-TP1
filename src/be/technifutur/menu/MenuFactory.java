@@ -115,7 +115,6 @@ public class MenuFactory {
 
     private ModifyActivityScheduleController getModifyActivityScheduleController() {
         ModifyActivityScheduleController controller = new ModifyActivityScheduleController();
-        controller.setModelActivityType(modelActivityType);
         controller.setModelSchedule(modelSchedule);
         controller.setScheduleView(new ScheduleView());
         return controller;

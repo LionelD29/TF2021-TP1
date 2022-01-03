@@ -58,6 +58,7 @@ public abstract class Util {
                 action.call();
             } catch (Exception e) {
                 System.out.println("Une erreur est survenue");
+                e.printStackTrace();
             }
             view.printSchedule(schedule);
             action = controller.getAction();

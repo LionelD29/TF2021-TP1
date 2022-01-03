@@ -28,6 +28,10 @@ public class Activity implements Serializable {
         return this.type;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     @Override
     public String toString() {
         return name + " -- Debut : " + start.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "\n" +
