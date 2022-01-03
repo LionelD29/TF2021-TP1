@@ -70,4 +70,9 @@ public class ActivityView {
     public void noSuchActivity(String activity) {
         System.out.printf("*** L'activite %s n'existe pas dans la liste ***%n", activity);
     }
+
+    public void usedActivity(String activity) {
+        System.out.println("*** Suppression impossible ***");
+        System.out.printf("    L'activite %s est actuellement utilisee dans l'horaire", activity);
+    }
 }
