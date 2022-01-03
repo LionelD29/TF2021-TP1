@@ -66,6 +66,7 @@ public class MenuFactory {
         model.addNode(createItem("Ajouter une activite a l'horaire (en cours)", getAddActivityController()));
         model.addNode(createItem("Modifier l'horaire d'une activite (en cours)", getModifyActivityScheduleController()));
         model.addNode(createItem("Supprimer une activite de l'horaire (en cours)", getDeleteActivityController()));
+        model.addNode(createItem("Afficher la liste des types d'activites", getReadActivityTypeController()));
         return createMenu(model);
     }
 
@@ -95,6 +96,13 @@ public class MenuFactory {
 
     private ModifyActivityTypeController getModifyActivityTypeController() {
         ModifyActivityTypeController controller = new ModifyActivityTypeController();
+        controller.setModel(modelActivityType);
+        controller.setActivityView(new ActivityView());
+        return controller;
+    }
+
+    private ReadActivityTypeController getReadActivityTypeController() {
+        ReadActivityTypeController controller = new ReadActivityTypeController();
         controller.setModel(modelActivityType);
         controller.setActivityView(new ActivityView());
         return controller;
