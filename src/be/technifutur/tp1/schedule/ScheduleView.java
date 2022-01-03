@@ -47,6 +47,13 @@ public class ScheduleView {
         return userInput;
     }
 
+    public String confirmDelete(String activityName) {
+        System.out.printf("L'activite %s va etre supprimee.%n", activityName);
+        System.out.print("Etes-vous sur de vouloir continuer ? (o/n) : ");
+        userInput = scan.nextLine();
+        return userInput;
+    }
+
     public LocalDateTime chooseActivityTime(String endOrStart) {
         boolean isValid = false;
         LocalDateTime parsedDate = null;
@@ -72,7 +79,6 @@ public class ScheduleView {
         return parsedDate;
     }
 
-
     // Messages
     public void printMessage(String message) {
         System.out.printf("*** %s ***%n", message);
@@ -91,12 +97,5 @@ public class ScheduleView {
 
     public void invalidChoice(String choice) {
         System.out.printf("*** %s n'est pas un choix valide ***%n", choice);
-    }
-
-    public String confirmDelete(String activityName) {
-        System.out.printf("L'activite %s va etre supprimee.%n", activityName);
-        System.out.print("Etes-vous sur de vouloir continuer ? (o/n) : ");
-        userInput = scan.nextLine();
-        return userInput;
     }
 }

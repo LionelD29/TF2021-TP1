@@ -2,26 +2,33 @@ package be.technifutur.menu;
 
 import be.technifutur.tp1.activityType.*;
 import be.technifutur.tp1.datastore.DataStore;
+import be.technifutur.tp1.datastore.DataType;
 import be.technifutur.tp1.registration.RegistrationManagementController;
 import be.technifutur.tp1.schedule.*;
 
 import java.util.concurrent.Callable;
 
 public class MenuFactory {
-    private final DataStore<ListActivityType> myDataStore = new DataStore<>(
+    /*private final DataStore<ListActivityType> myDataStore = new DataStore<>(
             "ressources/datastore.txt",
             ListActivityType::new
     );
     private final ListActivityType modelActivityType = myDataStore.getData();
 
-    private final Schedule modelSchedule = new Schedule();
+    private final Schedule modelSchedule = new Schedule();*/
+
+    private final DataStore<DataType> myDataStore = new DataStore<>(
+            "ressources/datastore.txt",
+            DataType::new
+    );
+    private final DataType dataType = myDataStore.getData();
+    private final ListActivityType modelActivityType = dataType.getActivityTypeModel();
+    private final Schedule modelSchedule = dataType.getScheduleModel();
 
     // Sauvegarde dans le fichier ressources/datastore.txt
     public void saveDataStore() {
         myDataStore.save();
     }
-
-
 
     // Methodes essentielles à la création d'items et de menus
     private MenuNode createItem(String name, Callable<? extends Object> action) {
@@ -42,8 +49,6 @@ public class MenuFactory {
     private MenuNode getItemReturn() {
         return createItem("Retour", null);
     }
-
-
 
     // Menus
     public MenuController getMenuPrincipal() {

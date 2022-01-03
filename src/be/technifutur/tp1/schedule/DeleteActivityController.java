@@ -1,7 +1,6 @@
 package be.technifutur.tp1.schedule;
 
 import be.technifutur.tp1.activity.Activity;
-import be.technifutur.tp1.activityType.ListActivityType;
 
 import java.util.concurrent.Callable;
 
