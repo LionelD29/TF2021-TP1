@@ -50,7 +50,7 @@ public class MenuFactory {
         MenuModel model = new MenuModel("Menu principal");
         model.addNode(createItem("Quitter le programme", null));
         model.addNode(createItem("Gestion des activites", new ActivityTypeManagementController(getMenuActivityManagement(), modelActivityType)));
-        model.addNode(createItem("Etablir l'horaire du stage (En cours)", new ScheduleManagementController(getMenuScheduleManagement())));
+        model.addNode(createItem("Etablir l'horaire du stage (En cours)", new ScheduleManagementController(getMenuScheduleManagement(), modelSchedule)));
         model.addNode(createItem("Gestion des inscriptions (bientot disponible)", new RegistrationManagementController(getMenuRegistrationManagement())));
         return createMenu(model);
     }

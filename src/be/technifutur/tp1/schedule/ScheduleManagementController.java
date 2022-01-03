@@ -6,16 +6,19 @@ import be.technifutur.util.Util;
 import java.util.concurrent.Callable;
 
 public class ScheduleManagementController implements Callable<Object> {
-    private MenuController controller;
+    private final MenuController controller;
+    private final Schedule modelSchedule;
+    private final ScheduleView scheduleView = new ScheduleView();
 
-    public ScheduleManagementController(MenuController controller) {
+    public ScheduleManagementController(MenuController controller, Schedule modelSchedule) {
         this.controller = controller;
+        this.modelSchedule = modelSchedule;
     }
 
     @Override
     public Object call() throws Exception {
         // Fait tourner le menu de gestion des horaires
-        Util.callAction(controller);
+        Util.callAction(controller, modelSchedule, scheduleView);
         System.out.println("Retour au menu principal");
         return null;
     }

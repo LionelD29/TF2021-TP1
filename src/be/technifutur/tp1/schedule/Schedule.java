@@ -5,24 +5,17 @@ import be.technifutur.tp1.activityType.ActivityType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Schedule implements Serializable {
-    public Map<ActivityType, List<Activity>> listActivity = new HashMap<>();
+    public Set<Activity> listActivity = new TreeSet<>(new StartTimeComparator());
 
     public Activity addActivity(LocalDateTime start, LocalDateTime end,
                                 String name, ActivityType type) {
 
-        List<Activity> l = listActivity.get(type);
-        if (l == null) {
-            l = new ArrayList<>();
-            listActivity.put(type, l);
-        }
         Activity activity = new Activity(start, end, name, type);
-        l.add(activity);
+        listActivity.add(activity);
         return activity;
     }
 }

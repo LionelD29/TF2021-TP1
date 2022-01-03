@@ -4,6 +4,7 @@ import be.technifutur.tp1.activityType.ActivityType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Activity implements Serializable {
     public LocalDateTime start;
@@ -17,5 +18,22 @@ public class Activity implements Serializable {
         this.end = end;
         this.name = name;
         this.type = type;
+    }
+
+    public LocalDateTime getStart() {
+        return this.start;
+    }
+
+    public LocalDateTime getEnd() {
+        return this.end;
+    }
+
+    @Override
+    public String toString() {
+        return name + " -- Debut : " + start.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "\n" +
+                " ".repeat(("* " + name).length()) +
+                " -- Fin : " + end.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "\n" +
+                " ".repeat(("* " + name).length()) +
+                " -- Inscription : " + (type.isRegistrationRequired() ? "obligatoire" : "facultative");
     }
 }
