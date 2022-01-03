@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ListActivityType implements Serializable {
-    private Map<String, ActivityType> activityTypes = new HashMap<>();
+    private final Map<String, ActivityType> activityTypes = new HashMap<>();
 
     public ActivityType addActivityType(String name, boolean registrationRequired) {
         // Ajoute une activité, et renvoit cette même activité si elle n'a rien écrasé dans la map, et renvoit null sinon

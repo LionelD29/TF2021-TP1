@@ -19,9 +19,8 @@ public class ModifyActivityTypeController implements Callable<ActivityType> {
         /*
             Cette méthode permet de modifier une activité existante
          */
-        String userInput = "";
+        String userInput;
         ActivityType activity;
-        String activityName = "";
 
         activityView.printMessage("Modification d'une activite");
 

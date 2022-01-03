@@ -19,9 +19,9 @@ public class CreateActivityTypeController implements Callable<ActivityType> {
         /*
             Cette méthode sert a controller l'opération de création d'une nouvelle activité
          */
-        ActivityType newActivity = null;
-        String name = "";
-        String registrationString = "";
+        ActivityType newActivity;
+        String name;
+        String registrationString;
         boolean registration = false;
 
         activityView.printMessage("Creation d'une nouvelle activite");

@@ -40,8 +40,8 @@ public class AddActivityController implements Callable<Activity> {
                 scheduleView.printMessage("La fin de l'activite doit etre posterieure a son debut");
                 end = scheduleView.chooseActivityTime("fin");
             }
-            modelSchedule.addActivity(start, end, activityName, type);
-            scheduleView.printMessage("L'activite " + activityName + " a bien ete ajoutee");
+            Activity newActivity = modelSchedule.addActivity(start, end, activityName, type);
+            scheduleView.printMessage("L'activite " + newActivity.getName() + " a bien ete ajoutee");
         } else {
             scheduleView.noSuchActivityType(activityType);
         }

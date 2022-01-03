@@ -1,7 +1,6 @@
 package be.technifutur.tp1.schedule;
 
 import be.technifutur.menu.MenuController;
-import be.technifutur.util.Util;
 
 import java.util.concurrent.Callable;
 
@@ -17,8 +16,21 @@ public class ScheduleManagementController implements Callable<Object> {
 
     @Override
     public Object call() throws Exception {
-        // Fait tourner le menu de gestion des horaires
-        Util.callAction(controller, modelSchedule, scheduleView);
+
+        scheduleView.printSchedule(modelSchedule);
+        Callable<? extends Object> action = controller.getAction();
+
+        while (action != null) {
+            try {
+                action.call();
+            } catch (Exception e) {
+                System.out.println("Une erreur est survenue");
+                e.printStackTrace();
+            }
+            scheduleView.printSchedule(modelSchedule);
+            action = controller.getAction();
+        }
+
         System.out.println("Retour au menu principal");
         return null;
     }

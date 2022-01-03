@@ -1,12 +1,11 @@
 package be.technifutur.tp1.registration;
 
 import be.technifutur.menu.MenuController;
-import be.technifutur.util.Util;
 
 import java.util.concurrent.Callable;
 
 public class RegistrationManagementController implements Callable<Object> {
-    private MenuController controller;
+    private final MenuController controller;
 
     public RegistrationManagementController(MenuController controller) {
         this.controller = controller;

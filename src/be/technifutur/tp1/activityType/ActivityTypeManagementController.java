@@ -1,14 +1,13 @@
 package be.technifutur.tp1.activityType;
 
 import be.technifutur.menu.MenuController;
-import be.technifutur.util.Util;
 
 import java.util.concurrent.Callable;
 
 public class ActivityTypeManagementController implements Callable<ActivityType> {
-    private MenuController controller;
-    private ListActivityType model;
-    private ActivityView activityView = new ActivityView();
+    private final MenuController controller;
+    private final ListActivityType model;
+    private final ActivityView activityView = new ActivityView();
 
     public ActivityTypeManagementController(MenuController activityManagementController,
                                             ListActivityType model) {
@@ -18,8 +17,20 @@ public class ActivityTypeManagementController implements Callable<ActivityType> 
 
     @Override
     public ActivityType call() throws Exception {
-        // Fait tourner le menu de gestion des activites
-        Util.callAction(controller, model, activityView);
+
+        activityView.printActivityList(model);
+        Callable<? extends Object> action = controller.getAction();
+
+        while (action != null) {
+            try {
+                action.call();
+            } catch (Exception e) {
+                System.out.println("Une erreur est survenue");
+            }
+            activityView.printActivityList(model);
+            action = controller.getAction();
+        }
+
         System.out.println("Retour au menu principal");
         return null;
     }

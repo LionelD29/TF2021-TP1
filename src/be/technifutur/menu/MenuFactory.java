@@ -17,10 +17,9 @@ public class MenuFactory {
     private final ListActivityType modelActivityType = dataType.getActivityTypeModel();
     private final Schedule modelSchedule = dataType.getScheduleModel();
 
-    // Sauvegarde dans le fichier ressources/datastore.txt
-    public void saveDataStore() {
-        myDataStore.save();
-    }
+   public DataStore<DataType> getDataStore() {
+       return this.myDataStore;
+   }
 
     // Methodes essentielles à la création d'items et de menus
     private MenuNode createItem(String name, Callable<? extends Object> action) {

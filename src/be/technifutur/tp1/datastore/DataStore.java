@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 
 public class DataStore<D extends Serializable> {
     private final Supplier<D> supplier;
-    private String file;
+    private final String file;
     private D data;
 
     // Rappel : un supplier est une méthode qui ne prend pas de paramètres et qui renvoit quelque chose
