@@ -73,6 +73,6 @@ public class ActivityView {
 
     public void usedActivity(String activity) {
         System.out.println("*** Suppression impossible ***");
-        System.out.printf("    L'activite %s est actuellement utilisee dans l'horaire", activity);
+        System.out.printf("    L'activite %s est actuellement utilisee dans l'horaire%n", activity);
     }
 }

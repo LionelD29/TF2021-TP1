@@ -83,4 +83,20 @@ public class ScheduleView {
         System.out.printf("*** Le type d'activite %s n'existe pas ***%n", activityType);
         System.out.println();
     }
+
+    public void noSuchActivity(String activity) {
+        System.out.printf("*** L'activite %s n'existe pas ***%n", activity);
+        System.out.println();
+    }
+
+    public void invalidChoice(String choice) {
+        System.out.printf("*** %s n'est pas un choix valide ***%n", choice);
+    }
+
+    public String confirmDelete(String activityName) {
+        System.out.printf("L'activite %s va etre supprimee.%n", activityName);
+        System.out.print("Etes-vous sur de vouloir continuer ? (o/n) : ");
+        userInput = scan.nextLine();
+        return userInput;
+    }
 }

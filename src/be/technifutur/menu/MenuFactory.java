@@ -122,7 +122,6 @@ public class MenuFactory {
 
     private DeleteActivityController getDeleteActivityController() {
         DeleteActivityController controller = new DeleteActivityController();
-        controller.setModelActivityType(modelActivityType);
         controller.setModelSchedule(modelSchedule);
         controller.setScheduleView(new ScheduleView());
         return controller;

@@ -41,6 +41,7 @@ public class AddActivityController implements Callable<Activity> {
                 end = scheduleView.chooseActivityTime("fin");
             }
             modelSchedule.addActivity(start, end, activityName, type);
+            scheduleView.printMessage("L'activite " + activityName + " a bien ete ajoutee");
         } else {
             scheduleView.noSuchActivityType(activityType);
         }

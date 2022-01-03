@@ -7,15 +7,10 @@ import java.util.concurrent.Callable;
 
 public class DeleteActivityController implements Callable<Activity> {
     private Schedule modelSchedule;
-    private ListActivityType modelActivityType;
     private ScheduleView scheduleView;
 
     public void setModelSchedule(Schedule modelSchedule) {
         this.modelSchedule = modelSchedule;
-    }
-
-    public void setModelActivityType(ListActivityType modelActivityType) {
-        this.modelActivityType = modelActivityType;
     }
 
     public void setScheduleView(ScheduleView scheduleView) {
@@ -24,7 +19,24 @@ public class DeleteActivityController implements Callable<Activity> {
 
     @Override
     public Activity call() throws Exception {
-        System.out.println("Suppression d'une activite de l'horaire du stage");
+        String confirmation = "";
+        String activityName = scheduleView.selectActivity();
+        Activity activity = modelSchedule.getActivity(activityName);
+        if (activity != null) {
+            confirmation = scheduleView.confirmDelete(activityName);
+            while (!confirmation.matches("[onON]")) {
+                scheduleView.invalidChoice(confirmation);
+                confirmation = scheduleView.confirmDelete(activityName);
+            }
+            if (confirmation.equalsIgnoreCase("o")) {
+                modelSchedule.listActivity.remove(activity);
+                scheduleView.printMessage("L'activite " + activityName + " a bien ete supprimee");
+            } else {
+                scheduleView.printMessage("Annulation de la suppression de l'activite " + activityName);
+            }
+        } else {
+            scheduleView.noSuchActivity(activityName);
+        }
         return null;
     }
 }

@@ -1,8 +1,6 @@
 package be.technifutur.tp1.schedule;
 
 import be.technifutur.tp1.activity.Activity;
-import be.technifutur.tp1.activityType.ActivityType;
-import be.technifutur.tp1.activityType.ListActivityType;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.Callable;
@@ -37,8 +35,9 @@ public class ModifyActivityScheduleController implements Callable<Activity> {
                 time = scheduleView.chooseActivityTime("fin");
             }
             activity.end = time;
+            scheduleView.printMessage("L'activite " + activityName + " a bien ete modifiee");
         } else {
-            scheduleView.noSuchActivityType(activityName);
+            scheduleView.noSuchActivity(activityName);
         }
         return null;
     }
