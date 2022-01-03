@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Schedule implements Serializable {
-    public Set<Activity> listActivity = new TreeSet<>(new StartTimeComparator());
+    private Set<Activity> listActivity = new TreeSet<>(new StartTimeComparator());
 
     public Activity addActivity(LocalDateTime start, LocalDateTime end,
                                 String name, ActivityType type) {
@@ -17,6 +17,10 @@ public class Schedule implements Serializable {
         Activity activity = new Activity(start, end, name, type);
         listActivity.add(activity);
         return activity;
+    }
+
+    public Set<Activity> getListActivity() {
+        return this.listActivity;
     }
 
     public Activity getActivity(String name) {

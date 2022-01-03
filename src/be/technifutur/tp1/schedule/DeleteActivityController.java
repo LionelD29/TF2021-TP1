@@ -28,7 +28,7 @@ public class DeleteActivityController implements Callable<Activity> {
                 confirmation = scheduleView.confirmDelete(activityName);
             }
             if (confirmation.equalsIgnoreCase("o")) {
-                modelSchedule.listActivity.remove(activity);
+                modelSchedule.getListActivity().remove(activity);
                 scheduleView.printMessage("L'activite " + activityName + " a bien ete supprimee");
             } else {
                 scheduleView.printMessage("Annulation de la suppression de l'activite " + activityName);

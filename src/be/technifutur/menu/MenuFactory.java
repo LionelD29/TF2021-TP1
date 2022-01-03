@@ -9,14 +9,6 @@ import be.technifutur.tp1.schedule.*;
 import java.util.concurrent.Callable;
 
 public class MenuFactory {
-    /*private final DataStore<ListActivityType> myDataStore = new DataStore<>(
-            "ressources/datastore.txt",
-            ListActivityType::new
-    );
-    private final ListActivityType modelActivityType = myDataStore.getData();
-
-    private final Schedule modelSchedule = new Schedule();*/
-
     private final DataStore<DataType> myDataStore = new DataStore<>(
             "ressources/datastore.txt",
             DataType::new

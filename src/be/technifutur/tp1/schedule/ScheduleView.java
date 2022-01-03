@@ -16,8 +16,8 @@ public class ScheduleView {
     public void printSchedule(Schedule schedule) {
         System.out.println("Horaire");
         System.out.println("-".repeat("Horaire".length()));
-        if (schedule.listActivity.size() != 0) {
-            for (Activity a : schedule.listActivity) {
+        if (schedule.getListActivity().size() != 0) {
+            for (Activity a : schedule.getListActivity()) {
                 System.out.printf("* %s%n%n", a);
             }
         } else {

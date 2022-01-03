@@ -39,7 +39,7 @@ public class DeleteActivityTypeController implements Callable<ActivityType> {
 
         if (activity != null) {
             // Si l'horaire contient une activité de ce type, on ne peut pas supprimer ce type d'activité.
-            for (Activity a : schedule.listActivity) {
+            for (Activity a : schedule.getListActivity()) {
                 if (a.getType().getName().equals(name)) {
                     isActivityTypeUsed = true;
                 }
