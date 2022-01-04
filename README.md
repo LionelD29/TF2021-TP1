@@ -18,7 +18,7 @@ Diverses opérations peuvent être effectuées sur les types d'activités :
 
 Si un type d'activité est utilisé dans l'horaire :
 - [X] La suppression du type d'activité est impossible
-- [ ] La modification du type entraine la modification du type d'activité de chacune des activités de ce type dans l'horaire
+- [X] La modification du type entraine la modification du type d'activité de chacune des activités de ce type dans l'horaire
 
 ### ✔️ Gestion des horaires
 On travaille avec des activités qui possèdent un type d'activité, un nom, un moment de début et de fin.
