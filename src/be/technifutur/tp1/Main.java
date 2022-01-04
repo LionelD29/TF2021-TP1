@@ -19,7 +19,7 @@ public class Main {
         DataStore<DataType> myDataStore = factory.getDataStore();
         factory = null;
 
-        Callable<? extends Object> action = controller.getAction();
+        Callable<?> action = controller.getAction();
 
         while (action != null) {
             try {

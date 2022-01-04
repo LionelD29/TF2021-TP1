@@ -3,6 +3,7 @@ package be.technifutur.tp1.activityType;
 import be.technifutur.tp1.activity.Activity;
 import be.technifutur.tp1.schedule.Schedule;
 
+import java.util.Iterator;
 import java.util.concurrent.Callable;
 
 public class DeleteActivityTypeController implements Callable<ActivityType> {
@@ -39,8 +40,10 @@ public class DeleteActivityTypeController implements Callable<ActivityType> {
 
         if (activity != null) {
             // Si l'horaire contient une activité de ce type, on ne peut pas supprimer ce type d'activité.
-            for (Activity a : schedule.getListActivity()) {
-                if (a.getType().getName().equals(name)) {
+            Iterator<Activity> iterator = schedule.getListActivity().iterator();
+            while (iterator.hasNext() && !isActivityTypeUsed) {
+                ActivityType type = iterator.next().getType();
+                if (type.getName().equals(name)) {
                     isActivityTypeUsed = true;
                 }
             }
