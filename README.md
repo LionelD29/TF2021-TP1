@@ -10,7 +10,7 @@ Le projet est toujours en cours de développement. La progression est représent
 
 (*voir la [légende](#légende) en fin de page*)
 
-### ✔️ Gestion des types d'activités
+### ✅ Gestion des types d'activités
 Diverses opérations peuvent être effectuées sur les types d'activités :
 - [X] **Créer** un nouveau type d'activité
 - [X] **Supprimer** un type d'activité
