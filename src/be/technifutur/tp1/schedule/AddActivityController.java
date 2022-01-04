@@ -32,11 +32,13 @@ public class AddActivityController implements Callable<Activity> {
 
     @Override
     public Activity call() throws Exception {
-        String activityType = scheduleView.selectActivityType();
-        ActivityType type = modelActivityType.get(activityType);
+        String activityTypeName = scheduleView.selectActivityType();
+        ActivityType type = modelActivityType.get(activityTypeName);
         if (type != null) {
             addActivity(type);
         } else {
+            // Si le type d'activité n'existe pas encore, on propose de le créer pour l'utiliser ensuite
+            // comme type d'activité de notre nouvelle activité
             String confirmation = scheduleView.confirmCreation();
             while (!confirmation.matches("[onON]")) {
                 scheduleView.invalidChoice(confirmation);
@@ -44,8 +46,7 @@ public class AddActivityController implements Callable<Activity> {
             }
 
             if (confirmation.equalsIgnoreCase("o")) {
-                createActivityTypeController.call();
-                type = modelActivityType.get(activityType);
+                type = createActivityTypeController.call(activityTypeName);
                 addActivity(type);
             } else {
                 scheduleView.printMessage("Le type d'activite n'a pas ete cree");

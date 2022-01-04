@@ -8,6 +8,10 @@ import java.util.Comparator;
 public class StartTimeComparator implements Comparator<Activity>, Serializable {
     @Override
     public int compare(Activity a1, Activity a2) {
-        return a1.getStart().compareTo(a2.getStart());
+        int i = a1.getStart().compareTo(a2.getStart());
+        if (i == 0) {
+            i = a1.getEnd().compareTo(a2.getEnd());
+        }
+        return i;
     }
 }

@@ -24,6 +24,10 @@ public class Activity implements Serializable {
         return this.start;
     }
 
+    public LocalDateTime getEnd() {
+        return this.end;
+    }
+
     public ActivityType getType() {
         return this.type;
     }

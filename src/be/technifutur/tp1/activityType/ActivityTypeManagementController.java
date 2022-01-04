@@ -19,7 +19,7 @@ public class ActivityTypeManagementController implements Callable<ActivityType> 
     public ActivityType call() throws Exception {
 
         activityView.printActivityList(model);
-        Callable<? extends Object> action = controller.getAction();
+        Callable<?> action = controller.getAction();
 
         while (action != null) {
             try {

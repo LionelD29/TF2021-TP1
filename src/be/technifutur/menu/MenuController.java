@@ -20,8 +20,8 @@ public class MenuController implements MenuNode {
     }
 
     @Override
-    public Callable<? extends Object> getAction() {
-        Callable<? extends Object> result = null;
+    public Callable<?> getAction() {
+        Callable<?> result = null;
         String input = "";
         MenuNode menuNode;
         int choix;

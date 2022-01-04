@@ -51,6 +51,7 @@ public class ScheduleView {
         System.out.printf("L'activite %s va etre supprimee.%n", activityName);
         System.out.print("Etes-vous sur de vouloir continuer ? (o/n) : ");
         userInput = scan.nextLine();
+        System.out.println();
         return userInput;
     }
 
@@ -61,13 +62,14 @@ public class ScheduleView {
         if (endOrStart.equalsIgnoreCase("debut") || endOrStart.equalsIgnoreCase("fin")) {
             while (!isValid) {
                 System.out.printf("Date de %s : %n", endOrStart);
-                System.out.println("(Format : dd/MM/yyyy hh:mm)");
+                System.out.println("(Format : jj/MM/aaaa HH:mm)");
                 userInput = scan.nextLine();
                 try {
                     parsedDate = LocalDateTime.parse(userInput, formatter);
                     isValid = true;
                 } catch(DateTimeParseException e) {
                     System.out.println("Mauvais format de date !");
+                    System.out.println();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -85,11 +87,6 @@ public class ScheduleView {
         System.out.println();
     }
 
-    public void noSuchActivityType(String activityType) {
-        System.out.printf("*** Le type d'activite %s n'existe pas ***%n", activityType);
-        System.out.println();
-    }
-
     public void noSuchActivity(String activity) {
         System.out.printf("*** L'activite %s n'existe pas ***%n", activity);
         System.out.println();
@@ -97,12 +94,14 @@ public class ScheduleView {
 
     public void invalidChoice(String choice) {
         System.out.printf("*** %s n'est pas un choix valide ***%n", choice);
+        System.out.println();
     }
 
     public String confirmCreation() {
         System.out.println("Ce type d'activite n'existe pas encore dans la liste.");
-        System.out.print("Voulez-vous le creer ? (o/n)");
+        System.out.print("Voulez-vous le creer ? (o/n) ");
         userInput = scan.nextLine();
+        System.out.println();
         return userInput;
     }
 }

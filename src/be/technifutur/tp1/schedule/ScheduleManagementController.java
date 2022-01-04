@@ -18,7 +18,7 @@ public class ScheduleManagementController implements Callable<Object> {
     public Object call() throws Exception {
 
         scheduleView.printSchedule(modelSchedule);
-        Callable<? extends Object> action = controller.getAction();
+        Callable<?> action = controller.getAction();
 
         while (action != null) {
             try {

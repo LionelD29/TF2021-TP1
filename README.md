@@ -10,28 +10,43 @@ Le projet est toujours en cours de développement. La progression est représent
 
 (*voir la [légende](#légende) en fin de page*)
 
-### ✅    Gestion des types d'activités
+### ✔️ Gestion des types d'activités
 Diverses opérations peuvent être effectuées sur les types d'activités :
 - [X] **Créer** un nouveau type d'activité
 - [X] **Supprimer** un type d'activité
 - [X] **Modifier** un type d'activité
 
+Si un type d'activité est utilisé dans l'horaire :
+- [X] La suppression du type d'activité est impossible
+- [ ] La modification du type entraine la modification du type d'activité de chacune des activités de ce type dans l'horaire
+
 ### ✔️ Gestion des horaires
 On travaille avec des activités qui possèdent un type d'activité, un nom, un moment de début et de fin.
 
 Dans l'horaire, on peut effectuer les actions suivantes :
-- [ ] **Ajouter** une activité à l'horaire
-- [ ] **Modifier** l'horaire d'une activité
-- [ ] **Supprimer** une activité de l'horaire
+- [X] **Ajouter** une activité à l'horaire
+    * D'un type d'activité déjà existant
+    * D'un type d'activité pas encore créé (la création en est alors proposée)
+- [X] **Modifier** l'horaire d'une activité
+- [X] **Supprimer** une activité de l'horaire
+- [X] **Afficher** la liste des types d'activités
 
-### ❌    Gestion des inscriptions
+Le cas des activités portant des points communs (nom, début ou fin) est encore à travailler.
+
+### ❌ Gestion des inscriptions
 À venir...
 
 ### ✔️ Sauvegarde des données
 Les données de l'application (types d'activités, horaires et inscriptions) sont sauvées dans un fichier externe.
-Actuellement, seuls les types d'activités sont sauvegardées, les autres types de données n'étant pas encore totalement implémentés.
 
-### ❌    Diagrammes UML de l'application
+#### Données actuellement sauvées :
+- [X] Types d'activités
+- [X] Horaire
+- [ ] Inscriptions
+
+Les données d'inscriptions ne sont pas encore implémentées.
+
+### ❌ Diagrammes UML de l'application
 À venir...
 
 - - - -

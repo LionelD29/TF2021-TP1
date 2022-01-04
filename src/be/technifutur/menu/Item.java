@@ -4,13 +4,13 @@ import java.util.concurrent.Callable;
 
 public class Item implements MenuNode {
     private String name;
-    private Callable<? extends Object> action;
+    private Callable<?> action;
 
     public String getName() {
         return this.name;
     }
 
-    public Callable<? extends Object> getAction() {
+    public Callable<?> getAction() {
         return this.action;
     }
 
@@ -18,7 +18,7 @@ public class Item implements MenuNode {
         this.name = name;
     }
 
-    public void setAction(Callable<? extends Object> action) {
+    public void setAction(Callable<?> action) {
         this.action = action;
     }
 

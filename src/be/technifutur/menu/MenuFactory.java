@@ -22,7 +22,7 @@ public class MenuFactory {
    }
 
     // Methodes essentielles à la création d'items et de menus
-    private MenuNode createItem(String name, Callable<? extends Object> action) {
+    private MenuNode createItem(String name, Callable<?> action) {
         Item item = new Item();
         item.setName(name);
         item.setAction(action);
