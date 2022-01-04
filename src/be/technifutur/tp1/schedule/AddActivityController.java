@@ -68,6 +68,11 @@ public class AddActivityController implements Callable<Activity> {
             end = scheduleView.chooseActivityTime("fin");
         }
         Activity newActivity = modelSchedule.addActivity(start, end, activityName, type);
-        scheduleView.printMessage("L'activite " + newActivity.getName() + " a bien ete ajoutee");
+        if (newActivity != null) {
+            scheduleView.printMessage("L'activite " + newActivity.getName() + " a bien ete ajoutee");
+        } else {
+            scheduleView.printMessage("L'activite " + activityName + " n'a pas ete ajoutee ***" +
+                    "\n" + "*** Impossible d'ajouter deux activites du meme type sur la meme plage horaire");
+        }
     }
 }

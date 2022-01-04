@@ -45,14 +45,14 @@ public class MenuFactory {
     public MenuController getMenuPrincipal() {
         MenuModel model = new MenuModel("Menu principal");
         model.addNode(createItem("Quitter le programme", null));
-        model.addNode(createItem("Gestion des activites", new ActivityTypeManagementController(getMenuActivityManagement(), modelActivityType)));
+        model.addNode(createItem("Gestion des types d'activites", new ActivityTypeManagementController(getMenuActivityManagement(), modelActivityType)));
         model.addNode(createItem("Etablir l'horaire du stage", new ScheduleManagementController(getMenuScheduleManagement(), modelSchedule)));
         model.addNode(createItem("Gestion des inscriptions (bientot disponible)", new RegistrationManagementController(getMenuRegistrationManagement())));
         return createMenu(model);
     }
 
     public MenuController getMenuActivityManagement() {
-        MenuModel model = new MenuModel("Gestion des activites");
+        MenuModel model = new MenuModel("Gestion des types d'activites");
         model.addNode(getItemReturn());
         model.addNode(createItem("Creer un type d'activite", getCreateActivityTypeController()));
         model.addNode(createItem("Supprimer un type d'activite", getDeleteActivityTypeController()));

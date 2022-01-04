@@ -9,13 +9,18 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Schedule implements Serializable {
-    private final Set<Activity> listActivity = new TreeSet<>(new StartTimeComparator());
+    private final Set<Activity> listActivity = new TreeSet<>(new StartEndTypeComparator());
 
     public Activity addActivity(LocalDateTime start, LocalDateTime end,
                                 String name, ActivityType type) {
 
         Activity activity = new Activity(start, end, name, type);
-        listActivity.add(activity);
+        // add(activity) renvoit false si le set contient déjà un exemplaire de cette activité, au sens
+        // du comparateur donné au constructeur du TreeSet ci-dessus.
+        boolean hasBeenAdded = listActivity.add(activity);
+        if (!hasBeenAdded) {
+            activity = null;
+        }
         return activity;
     }
 
