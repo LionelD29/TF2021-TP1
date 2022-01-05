@@ -34,7 +34,7 @@ public class ScheduleView {
     }
 
     public String selectActivity() {
-        System.out.print("Nom de l'activite a modifier : ");
+        System.out.print("Nom de l'activite : ");
         userInput = scan.nextLine();
         System.out.println();
         return userInput;
