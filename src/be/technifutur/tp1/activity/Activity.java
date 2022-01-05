@@ -1,5 +1,7 @@
 package be.technifutur.tp1.activity;
 
+import static be.technifutur.tp1.serializableComparator.GetSerializableFunction.makeSerializable;
+
 import be.technifutur.tp1.activityType.ActivityType;
 
 import java.io.Serializable;
@@ -43,11 +45,30 @@ public class Activity implements Serializable {
                 " ".repeat(("* " + name).length()) +
                 " -- Fin : " + end.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "\n" +
                 " ".repeat(("* " + name).length()) +
-                " -- Inscription : " + (type.isRegistrationRequired() ? "obligatoire" : "facultative");
+                " -- Type : " + type.getName() + "\n" +
+                " ".repeat(("* " + name).length()) +
+                " -- Inscription : " + (type.isRegistrationRequired() ? "oui" : "non");
     }
 
     public static Comparator<Activity> getComparator() {
-        return new Comparator<Activity>() {
+        // Version avec les expressions lambdas
+        return Comparator
+                .comparing(makeSerializable(Activity::getStart))
+                .thenComparing(makeSerializable(Activity::getEnd))
+                .thenComparing(makeSerializable(Activity::getName));
+
+        /*
+                    .thenComparing(makeSerializable(Activity::getType),
+                                    Comparator.comparing(makeSerializable(ActivityType::getName)));
+            // ActivityType n'étant pas Comparable, il faut donner en plus un Comparator qui explique
+            // comment les comparer. Ici, leur comparaison se fait uniquement sur leur nom.
+        */
+
+
+        // Version avec la classe interne anonyme qui implémente l'interface GetSerializableComparator
+        // GetSerializableComparator implémente une interface qui est Serializable car les Activity sont Serializable
+        // Si le Comparator n'est pas Serializable, ça génère une erreur.
+        /*return new GetSerializableComparator<Activity>() {
             @Override
             public int compare(Activity a1, Activity a2) {
                 int i = a1.getStart().compareTo(a2.getStart());
@@ -62,6 +83,6 @@ public class Activity implements Serializable {
                 }
                 return i;
             }
-        };
+        };*/
     }
 }
