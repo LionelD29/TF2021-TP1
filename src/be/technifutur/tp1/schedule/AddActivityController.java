@@ -32,6 +32,7 @@ public class AddActivityController implements Callable<Activity> {
 
     @Override
     public Activity call() throws Exception {
+        scheduleView.printMessage("Ajout d'une nouvelle activite a l'horaire");
         String activityTypeName = scheduleView.selectActivityType();
         ActivityType type = modelActivityType.get(activityTypeName);
         if (type != null) {

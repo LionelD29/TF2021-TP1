@@ -20,6 +20,9 @@ public class ModifyActivityScheduleController implements Callable<Activity> {
     @Override
     public Activity call() throws Exception {
         LocalDateTime time;
+
+        scheduleView.printMessage("Modification de l'horaire d'une activite");
+
         String activityName = scheduleView.selectActivity();
         Activity activity = modelSchedule.getActivity(activityName);
         if (activity != null) {

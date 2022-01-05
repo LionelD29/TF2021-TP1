@@ -19,6 +19,9 @@ public class DeleteActivityController implements Callable<Activity> {
     @Override
     public Activity call() throws Exception {
         String confirmation;
+
+        scheduleView.printMessage("Suppression d'une activite de l'horaire");
+
         String activityName = scheduleView.selectActivity();
         Activity activity = modelSchedule.getActivity(activityName);
         if (activity != null) {

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+import java.util.function.Function;
 
 public class Activity implements Serializable {
     public LocalDateTime start;
@@ -58,8 +59,8 @@ public class Activity implements Serializable {
                 .thenComparing(makeSerializable(Activity::getName));
 
         /*
-                    .thenComparing(makeSerializable(Activity::getType),
-                                    Comparator.comparing(makeSerializable(ActivityType::getName)));
+                .thenComparing(makeSerializable(Activity::getType),
+                               Comparator.comparing(makeSerializable(ActivityType::getName)));
             // ActivityType n'étant pas Comparable, il faut donner en plus un Comparator qui explique
             // comment les comparer. Ici, leur comparaison se fait uniquement sur leur nom.
         */
@@ -76,9 +77,6 @@ public class Activity implements Serializable {
                     i = a1.getEnd().compareTo(a2.getEnd());
                     if (i == 0) {
                         i = a1.getName().compareTo(a2.getName());
-                        if (i == 0) {
-                            i = a1.getType().getName().compareTo(a2.getType().getName());
-                        }
                     }
                 }
                 return i;
