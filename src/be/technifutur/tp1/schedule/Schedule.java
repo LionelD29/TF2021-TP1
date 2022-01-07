@@ -5,6 +5,8 @@ import be.technifutur.tp1.activityType.ActivityType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -13,6 +15,16 @@ public class Schedule implements Serializable {
 
     public Set<Activity> getListActivity() {
         return this.listActivity;
+    }
+
+    public List<Activity> getActivitiesByName(String activityName) {
+        List<Activity> l = new ArrayList<>();
+        for (Activity a : listActivity) {
+            if (a.getName().equals(activityName)) {
+                l.add(a);
+            }
+        }
+        return l;
     }
 
     public Activity getActivity(String name) {

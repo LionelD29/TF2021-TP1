@@ -5,6 +5,7 @@ import be.technifutur.tp1.activity.Activity;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ScheduleView {
@@ -47,8 +48,9 @@ public class ScheduleView {
         return userInput;
     }
 
-    public String confirmDelete(String activityName) {
-        System.out.printf("L'activite %s va etre supprimee.%n", activityName);
+    public String confirmDelete(Activity activity) {
+        System.out.println("L'activite ci-dessous va etre supprimee :");
+        System.out.println("* " + activity);
         System.out.print("Etes-vous sur de vouloir continuer ? (o/n) : ");
         userInput = scan.nextLine();
         System.out.println();
@@ -100,6 +102,19 @@ public class ScheduleView {
     public String confirmCreation() {
         System.out.println("Ce type d'activite n'existe pas encore dans la liste.");
         System.out.print("Voulez-vous le creer ? (o/n) ");
+        userInput = scan.nextLine();
+        System.out.println();
+        return userInput;
+    }
+
+    public String selectActivityIndex(List<Activity> activities) {
+        System.out.println("Plusieurs activites portent le meme nom.");
+        System.out.println("Choisissez le chiffre correspondant a celle que vous voulez : ");
+        for (int i = 0; i < activities.size(); i++) {
+            System.out.printf("(%2d)%n", i);
+            System.out.printf("* %s%n%n", activities.get(i));
+        }
+        System.out.print("Votre choix : ");
         userInput = scan.nextLine();
         System.out.println();
         return userInput;
