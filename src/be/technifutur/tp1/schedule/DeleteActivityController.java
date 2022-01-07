@@ -60,6 +60,7 @@ public class DeleteActivityController implements Callable<Activity> {
         } else {
             scheduleView.noSuchActivity(activityName);
         }
+        matchingActivities = null;
         return null;
     }
 }

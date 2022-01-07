@@ -4,6 +4,7 @@ import be.technifutur.tp1.activity.Activity;
 import be.technifutur.tp1.activityType.ActivityType;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 public class ModifyActivityScheduleController implements Callable<Activity> {
@@ -23,16 +24,34 @@ public class ModifyActivityScheduleController implements Callable<Activity> {
         LocalDateTime start;
         LocalDateTime end;
         String activityName;
-        Activity activity;
+        Activity activity = null;
         ActivityType activityType;
 
         scheduleView.printMessage("Modification de l'horaire d'une activite");
 
         activityName = scheduleView.selectActivity();
-        activity = modelSchedule.getActivity(activityName);
-        activityType = activity.getType();
 
-        if (modelSchedule.removeActivity(activity)) {
+        List<Activity> matchingActivities = modelSchedule.getActivitiesByName(activityName);
+
+        if (!matchingActivities.isEmpty()) {
+            if (matchingActivities.size() > 1) {
+                while (activity == null) {
+                    String activityIndex = scheduleView.selectActivityIndex(matchingActivities);
+                    try {
+                        int index = Integer.parseInt(activityIndex);
+                        activity = matchingActivities.get(index);
+                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                        scheduleView.invalidChoice(activityIndex);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                activity = matchingActivities.get(0);
+            }
+            activityType = activity.getType();
+            modelSchedule.removeActivity(activity);
+
             start = scheduleView.chooseActivityTime("debut");
             while (start.isBefore(LocalDateTime.now())) {
                 scheduleView.printMessage("L'activite ne peut pas debuter dans le passe");
