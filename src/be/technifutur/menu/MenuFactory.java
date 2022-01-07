@@ -16,7 +16,7 @@ public class MenuFactory {
     private final DataType dataType = myDataStore.getData();
     private final ListActivityType modelActivityType = dataType.getActivityTypeModel();
     private final Schedule modelSchedule = dataType.getScheduleModel();
-    private final ListPeople modelPeople = new ListPeople();
+    private final Registrations registrations = new Registrations();
 
    public DataStore<DataType> getDataStore() {
        return this.myDataStore;
@@ -48,7 +48,7 @@ public class MenuFactory {
         model.addNode(createItem("Quitter le programme", null));
         model.addNode(createItem("Gestion des types d'activites", new ActivityTypeManagementController(getMenuActivityManagement(), modelActivityType)));
         model.addNode(createItem("Etablir l'horaire du stage", new ScheduleManagementController(getMenuScheduleManagement(), modelSchedule)));
-        model.addNode(createItem("Gestion des inscriptions (en cours)", new RegistrationManagementController(getMenuRegistrationManagement(), modelPeople)));
+        model.addNode(createItem("Gestion des inscriptions (en cours)", new RegistrationManagementController(getMenuRegistrationManagement(), registrations)));
         return createMenu(model);
     }
 
@@ -139,24 +139,23 @@ public class MenuFactory {
 
 
     // Controlleurs pour la gestion des inscriptions
-
     private RegisterToActivityController getRegisteredToActivityController() {
         RegisterToActivityController controller = new RegisterToActivityController();
-        controller.setModelPeople(modelPeople);
+        controller.setRegistrations(registrations);
         controller.setRegistrationView(new RegistrationView());
         return controller;
     }
 
     private UnregisterToActivityController getUnregisteredFromActivityController() {
         UnregisterToActivityController controller = new UnregisterToActivityController();
-        controller.setModelPeople(modelPeople);
+        controller.setRegistrations(registrations);
         controller.setRegistrationView(new RegistrationView());
         return controller;
     }
 
     private ReadActivityRegistrationsController getReadActivityRegistrationsController() {
         ReadActivityRegistrationsController controller = new ReadActivityRegistrationsController();
-        controller.setModelPeople(modelPeople);
+        controller.setRegistrations(registrations);
         controller.setRegistrationView(new RegistrationView());
         return controller;
     }

@@ -6,12 +6,12 @@ import java.util.concurrent.Callable;
 
 public class RegistrationManagementController implements Callable<Object> {
     private final MenuController controller;
-    /*private final ListPeople modelPeople;
+    /*private final Registrations registrations;
     private final RegistrationView registrationView = new RegistrationView();*/
 
-    public RegistrationManagementController(MenuController controller, ListPeople modelPeople) {
+    public RegistrationManagementController(MenuController controller, Registrations registrations) {
         this.controller = controller;
-       // this.modelPeople = modelPeople;
+       // this.registrations = registrations;
     }
 
     @Override

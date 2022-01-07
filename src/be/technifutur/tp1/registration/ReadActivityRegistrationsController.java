@@ -3,11 +3,11 @@ package be.technifutur.tp1.registration;
 import java.util.concurrent.Callable;
 
 public class ReadActivityRegistrationsController implements Callable<Object> {
-    private ListPeople modelPeople;
+    private Registrations registrations;
     private RegistrationView registrationView;
 
-    public void setModelPeople(ListPeople modelPeople) {
-        this.modelPeople = modelPeople;
+    public void setRegistrations(Registrations registrations) {
+        this.registrations = registrations;
     }
 
     public void setRegistrationView(RegistrationView registrationView) {
