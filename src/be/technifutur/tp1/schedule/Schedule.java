@@ -49,6 +49,13 @@ public class Schedule implements Serializable {
         return activity;
     }
 
+    public Activity addActivity(Activity activity) {
+        if (!listActivity.add(activity)) {
+            activity = null;
+        }
+        return activity;
+    }
+
     public boolean removeActivity(Activity activity) {
         return listActivity.remove(activity);
     }
