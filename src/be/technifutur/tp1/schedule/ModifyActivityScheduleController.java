@@ -24,7 +24,7 @@ public class ModifyActivityScheduleController implements Callable<Activity> {
         LocalDateTime start;
         LocalDateTime end;
         String activityName;
-        Activity newActivity = null;
+        Activity newActivity;
         Activity oldActivity = null;
         ActivityType activityType;
 

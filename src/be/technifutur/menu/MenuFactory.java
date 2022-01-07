@@ -3,7 +3,7 @@ package be.technifutur.menu;
 import be.technifutur.tp1.activityType.*;
 import be.technifutur.tp1.datastore.DataStore;
 import be.technifutur.tp1.datastore.DataType;
-import be.technifutur.tp1.registration.RegistrationManagementController;
+import be.technifutur.tp1.registration.*;
 import be.technifutur.tp1.schedule.*;
 
 import java.util.concurrent.Callable;
@@ -16,6 +16,7 @@ public class MenuFactory {
     private final DataType dataType = myDataStore.getData();
     private final ListActivityType modelActivityType = dataType.getActivityTypeModel();
     private final Schedule modelSchedule = dataType.getScheduleModel();
+    private final ListPeople modelPeople = new ListPeople();
 
    public DataStore<DataType> getDataStore() {
        return this.myDataStore;
@@ -47,7 +48,7 @@ public class MenuFactory {
         model.addNode(createItem("Quitter le programme", null));
         model.addNode(createItem("Gestion des types d'activites", new ActivityTypeManagementController(getMenuActivityManagement(), modelActivityType)));
         model.addNode(createItem("Etablir l'horaire du stage", new ScheduleManagementController(getMenuScheduleManagement(), modelSchedule)));
-        model.addNode(createItem("Gestion des inscriptions (bientot disponible)", new RegistrationManagementController(getMenuRegistrationManagement())));
+        model.addNode(createItem("Gestion des inscriptions (en cours)", new RegistrationManagementController(getMenuRegistrationManagement(), modelPeople)));
         return createMenu(model);
     }
 
@@ -71,8 +72,11 @@ public class MenuFactory {
     }
 
     public MenuController getMenuRegistrationManagement() {
-        MenuModel model = new MenuModel("Gestion des inscriptions (Bientot disponible)");
+        MenuModel model = new MenuModel("Gestion des inscriptions (en cours)");
         model.addNode(getItemReturn());
+        model.addNode(createItem("S'inscrire à une activite", getRegisteredToActivityController()));
+        model.addNode(createItem("Se desinscrire d'une activite", getUnregisteredFromActivityController()));
+        model.addNode(createItem("Afficher la liste des inscriptions a une activite", getReadActivityRegistrationsController()));
         return createMenu(model);
     }
 
@@ -130,6 +134,30 @@ public class MenuFactory {
         DeleteActivityController controller = new DeleteActivityController();
         controller.setModelSchedule(modelSchedule);
         controller.setScheduleView(new ScheduleView());
+        return controller;
+    }
+
+
+    // Controlleurs pour la gestion des inscriptions
+
+    private RegisterToActivityController getRegisteredToActivityController() {
+        RegisterToActivityController controller = new RegisterToActivityController();
+        controller.setModelPeople(modelPeople);
+        controller.setRegistrationView(new RegistrationView());
+        return controller;
+    }
+
+    private UnregisterToActivityController getUnregisteredFromActivityController() {
+        UnregisterToActivityController controller = new UnregisterToActivityController();
+        controller.setModelPeople(modelPeople);
+        controller.setRegistrationView(new RegistrationView());
+        return controller;
+    }
+
+    private ReadActivityRegistrationsController getReadActivityRegistrationsController() {
+        ReadActivityRegistrationsController controller = new ReadActivityRegistrationsController();
+        controller.setModelPeople(modelPeople);
+        controller.setRegistrationView(new RegistrationView());
         return controller;
     }
 }
