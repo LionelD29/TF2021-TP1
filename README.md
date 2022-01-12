@@ -44,9 +44,6 @@ Les données de l'application (types d'activités, horaires et inscriptions) son
 
 Les données d'inscriptions ne sont pas encore implémentées.
 
-### ❌ Diagrammes UML de l'application
-À venir...
-
 - - - -
 
 #### Légende
