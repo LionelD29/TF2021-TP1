@@ -27,16 +27,6 @@ public class Schedule implements Serializable {
         return l;
     }
 
-    public Activity getActivity(String name) {
-        Activity activity = null;
-        for (Activity a : listActivity) {
-            if (a.getName().equals(name)) {
-                activity = a;
-            }
-        }
-        return activity;
-    }
-
     public Activity addActivity(LocalDateTime start, LocalDateTime end,
                                 String name, ActivityType type) {
 

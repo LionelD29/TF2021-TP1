@@ -32,6 +32,7 @@ public class ModifyActivityScheduleController implements Callable<Activity> {
 
         activityName = scheduleView.selectActivity();
 
+        // Récupération de toutes les activités qui possèdent ce nom
         List<Activity> matchingActivities = modelSchedule.getActivitiesByName(activityName);
 
         if (!matchingActivities.isEmpty()) {
@@ -51,6 +52,8 @@ public class ModifyActivityScheduleController implements Callable<Activity> {
                 oldActivity = matchingActivities.get(0);
             }
             activityType = oldActivity.getType();
+
+            // Modification de l'activité
             modelSchedule.removeActivity(oldActivity);
 
             start = scheduleView.chooseActivityTime("debut");

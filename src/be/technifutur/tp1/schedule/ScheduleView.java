@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class ScheduleView {
 
-    private String userInput = "";
-    private final Scanner scan = new Scanner(System.in);
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private static String userInput = "";
+    private static final Scanner scan = new Scanner(System.in);
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public void printSchedule(Schedule schedule) {
         System.out.println("Horaire");

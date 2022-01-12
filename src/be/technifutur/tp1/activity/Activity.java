@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
-import java.util.function.Function;
 
 public class Activity implements Serializable {
     public LocalDateTime start;
@@ -51,25 +50,27 @@ public class Activity implements Serializable {
                 " -- Inscription : " + (type.isRegistrationRequired() ? "oui" : "non");
     }
 
+    // Version avec les expressions lambdas
     public static Comparator<Activity> getComparator() {
-        // Version avec les expressions lambdas
+
         return Comparator
                 .comparing(makeSerializable(Activity::getStart))
                 .thenComparing(makeSerializable(Activity::getEnd))
                 .thenComparing(makeSerializable(Activity::getName));
+    }
+    /*
+            .thenComparing(makeSerializable(Activity::getType),
+                           Comparator.comparing(makeSerializable(ActivityType::getName)));
+        // ActivityType n'étant pas Comparable, il faut donner en plus un Comparator qui explique
+        // comment les comparer. Ici, leur comparaison se fait uniquement sur leur nom.
+    */
 
-        /*
-                .thenComparing(makeSerializable(Activity::getType),
-                               Comparator.comparing(makeSerializable(ActivityType::getName)));
-            // ActivityType n'étant pas Comparable, il faut donner en plus un Comparator qui explique
-            // comment les comparer. Ici, leur comparaison se fait uniquement sur leur nom.
-        */
 
-
-        // Version avec la classe interne anonyme qui implémente l'interface GetSerializableComparator
-        // GetSerializableComparator implémente une interface qui est Serializable car les Activity sont Serializable
-        // Si le Comparator n'est pas Serializable, ça génère une erreur.
-        /*return new GetSerializableComparator<Activity>() {
+    // Version avec la classe interne anonyme qui étend la classe abstraite GetSerializableComparator
+    // GetSerializableComparator implémente une interface qui est Serializable car les Activity sont Serializable
+    // Si le Comparator n'est pas Serializable, ça génère une erreur.
+    /*public static Comparator<Activity> getComparator() {
+        return new GetSerializableComparator<Activity>() {
             @Override
             public int compare(Activity a1, Activity a2) {
                 int i = a1.getStart().compareTo(a2.getStart());
@@ -81,6 +82,25 @@ public class Activity implements Serializable {
                 }
                 return i;
             }
-        };*/
-    }
+        };
+    }*/
+
+
+    // Version avec la classe interne qui étend la classe abstraite GetSerializableComparator
+    /*public static Comparator<Activity> getComparator() {
+        class GetComparator extends GetSerializableComparator<Activity> {
+            @Override
+            public int compare(Activity a1, Activity a2) {
+                int i = a1.getStart().compareTo(a2.getStart());
+                if (i == 0) {
+                    i = a1.getEnd().compareTo(a2.getEnd());
+                    if (i == 0) {
+                        i = a1.getName().compareTo(a2.getName());
+                    }
+                }
+                return i;
+            }
+        }
+        return new GetComparator();
+    }*/
 }

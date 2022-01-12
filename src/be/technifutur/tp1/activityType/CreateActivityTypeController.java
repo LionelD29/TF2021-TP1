@@ -32,15 +32,15 @@ public class CreateActivityTypeController implements Callable<ActivityType> {
         ActivityType oldActivity = model.get(name);
         if (oldActivity == null) {
             registrationString = activityView.inputActivityRegistration();
-            if (registrationString.matches("[onON]")) {
-                registration = registrationString.equalsIgnoreCase("o");
-
-                newActivity = model.addActivityType(name, registration);
-                activityView.printMessage("Nouveau type d'activite ajoutee");
-                activityView.printActivity(newActivity);
-            } else {
+            while (!registrationString.matches("[onON]")) {
                 activityView.invalidChoice(registrationString);
+                registrationString = activityView.inputActivityRegistration();
             }
+            registration = registrationString.equalsIgnoreCase("o");
+
+            newActivity = model.addActivityType(name, registration);
+            activityView.printMessage("Nouveau type d'activite ajoutee");
+            activityView.printActivity(newActivity);
         } else {
             activityView.printMessage("Le type d'activite " + oldActivity.getName() + " existe deja dans la liste");
             activityView.printActivity(oldActivity);
@@ -58,6 +58,7 @@ public class CreateActivityTypeController implements Callable<ActivityType> {
         boolean registration;
 
         activityView.printMessage("Creation d'un nouveau type d'activite");
+
         registrationString = activityView.inputActivityRegistration();
 
         while (!registrationString.matches("[onON]")) {
