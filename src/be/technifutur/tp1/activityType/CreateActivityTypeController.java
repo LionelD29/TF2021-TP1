@@ -19,14 +19,24 @@ public class CreateActivityTypeController implements Callable<ActivityType> {
         /*
             Cette méthode sert a controller l'opération de création d'un nouveau type d'activite
          */
-        ActivityType newActivity;
         String name;
+
+        activityView.printMessage("Creation d'un nouveau type d'activite");
+        name = activityView.inputActivityName();
+
+        call(name);
+        return null;
+    }
+
+    public ActivityType call(String name) throws Exception {
+        /*
+            Cette méthode sert a controller l'opération de création d'un nouveau type d'activite
+            depuis le controller AddActivityController qui sert à ajouter une activité à l'horaire
+         */
+        ActivityType newActivityType = null;
         String registrationString;
         boolean registration;
 
-        activityView.printMessage("Creation d'un nouveau type d'activite");
-
-        name = activityView.inputActivityName();
         // Si un type d'activité dans le modèle possède déjà le nom entré par l'utilisateur, on affiche un message d'erreur, ainsi
         // que l'activité en question.
         ActivityType oldActivity = model.get(name);
@@ -38,39 +48,13 @@ public class CreateActivityTypeController implements Callable<ActivityType> {
             }
             registration = registrationString.equalsIgnoreCase("o");
 
-            newActivity = model.addActivityType(name, registration);
+            newActivityType = model.addActivityType(name, registration);
             activityView.printMessage("Nouveau type d'activite ajoutee");
-            activityView.printActivity(newActivity);
+            activityView.printActivity(newActivityType);
         } else {
             activityView.printMessage("Le type d'activite " + oldActivity.getName() + " existe deja dans la liste");
             activityView.printActivity(oldActivity);
         }
-        return null;
-    }
-
-    public ActivityType call(String name) throws Exception {
-        /*
-            Cette méthode sert a controller l'opération de création d'un nouveau type d'activite
-            depuis le controller AddActivityController qui sert à ajouter une activité à l'horaire
-         */
-        ActivityType newActivityType;
-        String registrationString;
-        boolean registration;
-
-        activityView.printMessage("Creation d'un nouveau type d'activite");
-
-        registrationString = activityView.inputActivityRegistration();
-
-        while (!registrationString.matches("[onON]")) {
-            activityView.invalidChoice(registrationString);
-            registrationString = activityView.inputActivityRegistration();
-        }
-        registration = registrationString.equalsIgnoreCase("o");
-
-        newActivityType = model.addActivityType(name, registration);
-        activityView.printMessage("Nouveau type d'activite ajoutee");
-        activityView.printActivity(newActivityType);
-
         // On renvoit le nouveau type d'activité afin de l'utiliser immédiatement dans
         // AddActivityController comme étant le type d'activité de l'activité que l'on souhaite
         // ajouter à l'horaire

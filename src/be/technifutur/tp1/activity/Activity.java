@@ -10,10 +10,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 public class Activity implements Serializable {
-    public LocalDateTime start;
-    public LocalDateTime end;
-    public String name;
-    public ActivityType type;
+    private final LocalDateTime start;
+    private final LocalDateTime end;
+    private String name;
+    private ActivityType type;
 
     public Activity(LocalDateTime start, LocalDateTime end,
                     String name, ActivityType type) {
@@ -39,15 +39,22 @@ public class Activity implements Serializable {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(ActivityType type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
-        return name + " -- Debut : " + start.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "\n" +
-                " ".repeat(("* " + name).length()) +
-                " -- Fin : " + end.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "\n" +
-                " ".repeat(("* " + name).length()) +
-                " -- Type : " + type.getName() + "\n" +
-                " ".repeat(("* " + name).length()) +
-                " -- Inscription : " + (type.isRegistrationRequired() ? "oui" : "non");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String tabulations = " ".repeat(("* " + name).length());
+        return name + " -- Debut : " + start.format(formatter) + "\n"
+                + tabulations + " -- Fin : " + end.format(formatter) + "\n"
+                + tabulations + " -- Type : " + type.getName() + "\n"
+                + tabulations + " -- Inscription : " + (type.isRegistrationRequired() ? "oui" : "non");
     }
 
     // Version avec les expressions lambdas

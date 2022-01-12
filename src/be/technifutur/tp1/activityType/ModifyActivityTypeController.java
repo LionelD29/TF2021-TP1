@@ -72,7 +72,7 @@ public class ModifyActivityTypeController implements Callable<ActivityType> {
 
             for (Activity a : schedule.getListActivity()) {
                 if (a.getType().getName().equals(oldTypeName)) {
-                    a.type = newActivityType;
+                    a.setType(newActivityType);
                 }
             }
         } else {
